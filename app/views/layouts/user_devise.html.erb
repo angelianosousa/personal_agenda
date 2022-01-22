@@ -23,6 +23,11 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
+
+            <% if alert %>
+              <p class="alert alert-danger"><%= alert %></p>
+            <% end %>
+            
             <%= yield %>
           </section>
         </div>
@@ -32,6 +37,15 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'user_devise' %>
+
+    <% if flash %>
+        <% flash.each do |key, value| %>
+          <%= javascript_tag do %>
+            var notify =$.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
+            notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
+          <% end %>
+        <% end %>
+    <% end %>
 
   </body>
 </html>
