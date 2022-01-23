@@ -5,10 +5,6 @@ class UsersBackoffice::SubjectsController < UsersBackofficeController
     @subjects = Subject.all.order(id: :desc).includes(:topics).page params[:page]
   end
 
-  def index2
-    @subjects = Subject.all.order(id: :desc).includes(:topics).page params[:page]
-  end
-
   def new
     @subject = Subject.new
   end
