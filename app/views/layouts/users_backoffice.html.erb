@@ -22,7 +22,9 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Agenda Pessoal</span></a>
+              <%= link_to users_backoffice_subjects_path, class:"site_title" do %>
+                <i class="fa fa-book"></i> <span>Agenda Pessoal</span>
+              <% end %>
             </div>
 
             <div class="clearfix"></div>
@@ -49,6 +51,11 @@
                   <li>
                     <%= link_to users_backoffice_welcome_index_path do %>
                       <i class="fa fa-home"></i> Home
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to users_backoffice_subjects_path do %>
+                      <i class="fa fa-comments"></i> Assuntos
                     <% end %>
                   </li>
                 </ul>
@@ -171,11 +178,11 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <!-- top tiles -->
-
-          LAYOUT USERS BACKOFFICE
-          <%= yield %>
-
+          <div class="row" style="display: inline;">
+            <div class="col-md-12 col-sm-12 ">
+              <%= yield %>
+            </div>
+          </div>
         </div>
         <!-- /page content -->
 

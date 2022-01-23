@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  
   devise_for :users
+  
   namespace :users_backoffice do
     get 'welcome/index'
+    get 'subjects/index2'
+
+    resources :subjects
   end
 
   root to: "users_backoffice/welcome#index"

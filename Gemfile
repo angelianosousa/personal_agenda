@@ -32,6 +32,7 @@ gem 'faker'
 gem 'tty-spinner'
 gem 'kaminari'
 gem 'kaminari-i18n'
+gem "cocoon"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -9,3 +9,4 @@
 //= require bootstrap-progressbar/bootstrap-progressbar.min
 //= require bootstrap-daterangepicker/daterangepicker
 //= require custom
+//= require cocoon
