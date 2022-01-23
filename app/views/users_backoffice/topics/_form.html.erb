@@ -1,0 +1,43 @@
+<% if @topic.errors.any? %>
+  <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    
+    <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li> <%= message %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: [:users_backoffice, @topic], local: true, id:"demo-form2", "data-parsley-validate":"", class:"form-horizontal form-label-left" do |form| %>
+
+  <div class="item form-group">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <%= form.text_field :name, class:"form-control", placeholder:"Nome do tópico" %>
+    </div>
+  </div>
+
+  <div class="item form-group">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <%= form.text_field :description, class:"form-control", placeholder:"Descreva o tópico" %>
+    </div>
+  </div><br>
+
+  <div class="item form-group">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <%= form.label :Assunto%>
+      <h2><%= @topic.subject.name %></h2>
+      <%= select("subject", "subject_id", Subject.all.collect {|sub| [sub.name, sub.id] }, { prompt: true }, class:"form-control") %>
+    </div>
+  </div>
+
+  <div class="ln_solid"></div>
+
+  <div class="item form-group">
+    <div class="col-md-9">
+      <%= form.submit "Salvar", class:"btn btn-primary", style:"float:none;" %>
+    </div>
+  </div>
+
+<% end %>

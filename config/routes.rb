@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   
   namespace :users_backoffice do
     get 'welcome/index'
-    get 'subjects/index2'
-
+    
+    resources :topics, only: [:edit, :update, :destroy]
     resources :subjects
   end
 
