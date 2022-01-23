@@ -43,6 +43,6 @@ class UsersBackoffice::SubjectsController < UsersBackofficeController
   end
 
   def subject_params
-    params.require(:subject).permit(:name, :description, topics_attributes: [:id, :name, :description, :status, :_destroy])
+    params.require(:subject).permit(:name, topics_attributes: [:id, :title, :description, :due_to, :status, :_destroy])
   end
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   namespace :users_backoffice do
     get 'welcome/index'
+    get 'calendar_events/index'
     
     resources :topics, only: [:edit, :update, :destroy]
     resources :subjects

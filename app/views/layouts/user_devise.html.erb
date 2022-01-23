@@ -24,8 +24,13 @@
         <div class="animate form login_form">
           <section class="login_content">
 
-            <% if alert %>
-              <p class="alert alert-danger"><%= alert %></p>
+            <% flash.each do |name, msg| %>
+              <% if msg.is_a?(String) %>
+                <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                  <a class="close" data-dismiss="alert">&#215;</a>
+                  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                </div>
+              <% end %>
             <% end %>
             
             <%= yield %>

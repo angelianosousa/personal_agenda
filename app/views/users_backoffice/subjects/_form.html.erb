@@ -18,12 +18,6 @@
     </div>
   </div>
 
-  <div class="item form-group">
-    <div class="col-md-9 col-sm-9 col-xs-9">
-      <%= form.text_field :description, class:"form-control", placeholder:"Descreva do que se trata o assunto" %>
-    </div>
-  </div><br>
-
   <div id='topics'>
     <%= form.fields_for :topics do |topic| %>
       <%= render partial: "topic_fields", locals: { f: topic } %>

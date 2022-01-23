@@ -14,7 +14,7 @@
 
   <div class="item form-group">
     <div class="col-md-9 col-sm-9 col-xs-9">
-      <%= form.text_field :name, class:"form-control", placeholder:"Nome do tópico" %>
+      <%= form.text_field :title, class:"form-control", placeholder:"Nome do tópico" %>
     </div>
   </div>
 
@@ -23,6 +23,12 @@
       <%= form.text_field :description, class:"form-control", placeholder:"Descreva o tópico" %>
     </div>
   </div><br>
+
+  <div class="item form-group">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <%= form.date_field :due_to, class:"form-control", placeholder:"Descreva o tópico" %>
+    </div>
+  </div>
 
   <div class="item form-group">
     <div class="col-md-9 col-sm-9 col-xs-9">

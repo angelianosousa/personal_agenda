@@ -1,184 +1,63 @@
-<div class="row">
-  <div class="container">
-    <h2>Assuntos</h2>
-  </div>
-</div>
-
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="heading_<%=@subjects.first.id%>">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_<%= @subjects.first.id %>" aria-expanded="true" aria-controls="collapse_<%= @subjects.first.id %>">
-          <%= @subjects.first.name %>
-        </button>
-        <%= @subjects.first.description.truncate(60) %>
-        <%= link_to "", users_backoffice_subject_path(@subjects.first), method: :delete, class:"btn btn-danger fa fa-trash", style:"float:right;" %>
-        <%= link_to "", edit_users_backoffice_subject_path(@subjects.first), class:"btn btn-secondary fa fa-edit", style:"float:right;" %>
-      </h2>
+<div class="col-md-12 col-sm-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Assuntos salvos</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <%= link_to new_users_backoffice_subject_path, class:"btn btn-success btn-block btn-round", style:"width:100px;" do %>
+          <i class="fa fa-plus-square" ></i>
+        <% end %>       
+      </ul>
+      <div class="clearfix"></div>
     </div>
 
-    <div id="collapse_<%= @subjects.first.id %>" class="collapse" aria-labelledby="heading_<%=@subjects.first.id%>" data-parent="#accordionExample">
-      <div class="card-body">
-        <h2>Tópicos</h2>
-        <% @subjects.first.topics.each do |topic| %>
-          <div class="card-body col-md-3 col-xl-3">
-            <% if topic.status == "em andamento" %>
-              <h5 class="badge badge-warning"><%= topic.status %></h5>
-            <% elsif topic.status == "pendente" %>
-              <h5 class="badge badge-danger"><%= topic.status %></h5>
-            <% else topic.status == "concluida" %>
-              <h5 class="badge badge-success"><%= topic.status %></h5>
-            <% end %>
+    <div class="x_content">
 
-            <h5 class="card-title"><%= topic.name.truncate(20) %></h5>
-            <p class="card-text"><%= topic.description.truncate(30) %></p>
-            <%= link_to "", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
-            <%= link_to "", users_backoffice_topic_path(topic), method: :delete, class:"btn btn-danger fa fa-trash" %>
-          </div>
+      <%= paginate @subjects, class:"text-center" %>
+    
+      <ul class="list-unstyled timeline">
+        <% @subjects.each do |subject| %>
+
+          <li>
+            <div class="block">
+              <div class="tags">
+                <a href="<%= edit_users_backoffice_subject_path(subject) %>" class="tag" title="Clique para editar o assunto ou os tópicos">
+                  <p><%= subject.name %><p>
+                </a>
+              </div>
+              <% subject.topics.last(4).each do |topic| %>
+                <div class="block_content">
+                  <h2 class="title">
+                    <!-- Button trigger modal -->
+                    <button class="badge badge-primary" data-toggle="modal" data-target="#topicModal_<%= subject.id %>" title="Clique para ver todos os tópicos desse assunto">
+                      <%= topic.title %>
+                    </button>
+                    <%= link_to " ", edit_users_backoffice_topic_path(topic), class:"badge badge-secondary fa fa-edit" %>
+                    <%= link_to " ", users_backoffice_topic_path(topic), method: :delete, data: {confirm: "Apagar #{topic.title} ?"}, class:"badge badge-danger fa fa-trash" %>
+                    <% if topic.status == "em andamento" %>
+                      <h5 class="badge badge-warning"><%= topic.status %></h5>
+                    <% elsif topic.status == "pendente" %>
+                      <h5 class="badge badge-danger"><%= topic.status %></h5>
+                    <% else topic.status == "concluida" %>
+                      <h5 class="badge badge-success"><%= topic.status %></h5>
+                    <% end %>
+                  </h2>
+                  <div class="byline">
+                    <span><%= I18n.l(topic.due_to) %></span> by <a><%= current_user.email %></a>
+                  </div>
+                  <p class="excerpt"><%= topic.description %>
+                  </p>
+                </div>
+              <% end %>
+              
+              <%= render partial: '/users_backoffice/subjects/shared/topics_modal', locals: { subject: subject } %>
+
+            </div>
+          </li>
         <% end %>
-      </div>
+        
+      </ul>
+
+      <%= paginate @subjects %>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-header" id="heading_<%= @subjects.second.id %>">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_<%= @subjects.second.id %>" aria-expanded="false" aria-controls="collapse_<%= @subjects.second.id %>">
-          <%= @subjects.second.name %>
-        </button>
-        <%= @subjects.second.description.truncate(60) %>
-        <%= link_to "", users_backoffice_subject_path(@subjects.second), method: :delete, class:"btn btn-danger fa fa-trash", style:"float:right;" %>
-        <%= link_to "", edit_users_backoffice_subject_path(@subjects.second), class:"btn btn-secondary fa fa-edit", style:"float:right;" %>
-      </h2>
-    </div>
-    <div id="collapse_<%= @subjects.second.id %>" class="collapse" aria-labelledby="heading_<%= @subjects.second.id %>" data-parent="#accordionExample">
-      <div class="card-body">
-        <h2>Tópicos</h2>
-        <% @subjects.second.topics.each do |topic| %>
-          <div class="card-body col-md-3 col-xl-3">
-            <% if topic.status == "em andamento" %>
-              <h5 class="badge badge-warning"><%= topic.status %></h5>
-            <% elsif topic.status == "pendente" %>
-              <h5 class="badge badge-danger"><%= topic.status %></h5>
-            <% else topic.status == "concluida" %>
-              <h5 class="badge badge-success"><%= topic.status %></h5>
-            <% end %>
-
-            <h5 class="card-title"><%= topic.name.truncate(20) %></h5>
-            <p class="card-text"><%= topic.description.truncate(30) %></p>
-            <%= link_to "", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
-            <%= link_to "", users_backoffice_topic_path(topic), method: :delete, class:"btn btn-danger fa fa-trash" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="heading_<%= @subjects.third.id %>">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_<%= @subjects.third.id %>" aria-expanded="false" aria-controls="collapse_<%= @subjects.third.id %>">
-          <%= @subjects.third.name %>
-        </button>
-        <%= @subjects.third.description.truncate(60) %>
-        <%= link_to "", users_backoffice_subject_path(@subjects.third), method: :delete, class:"btn btn-danger fa fa-trash", style:"float:right;" %>
-        <%= link_to "", edit_users_backoffice_subject_path(@subjects.third), class:"btn btn-secondary fa fa-edit", style:"float:right;" %>
-      </h2>
-    </div>
-    <div id="collapse_<%= @subjects.third.id %>" class="collapse" aria-labelledby="heading_<%= @subjects.third.id %>" data-parent="#accordionExample">
-      <div class="card-body">
-        <h2>Tópicos</h2>
-        <% @subjects.third.topics.each do |topic| %>
-          <div class="card-body col-md-3 col-xl-3">
-            <% if topic.status == "em andamento" %>
-              <h5 class="badge badge-warning"><%= topic.status %></h5>
-            <% elsif topic.status == "pendente" %>
-              <h5 class="badge badge-danger"><%= topic.status %></h5>
-            <% else topic.status == "concluida" %>
-              <h5 class="badge badge-success"><%= topic.status %></h5>
-            <% end %>
-
-            <h5 class="card-title"><%= topic.name.truncate(20) %></h5>
-            <p class="card-text"><%= topic.description.truncate(30) %></p>
-            <%= link_to "", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
-            <%= link_to "", users_backoffice_topic_path(topic), method: :delete, class:"btn btn-danger fa fa-trash" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="heading_<%= @subjects.fourth.id %>">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_<%= @subjects.fourth.id %>" aria-expanded="false" aria-controls="collapse_<%= @subjects.fourth.id %>">
-          <%= @subjects.fourth.name %>
-        </button>
-        <%= @subjects.fourth.description.truncate(60) %>
-        <%= link_to "", users_backoffice_subject_path(@subjects.fourth), method: :delete, class:"btn btn-danger fa fa-trash", style:"float:right;" %>
-        <%= link_to "", edit_users_backoffice_subject_path(@subjects.fourth), class:"btn btn-secondary fa fa-edit", style:"float:right;" %>
-      </h2>
-    </div>
-
-    <div id="collapse_<%= @subjects.fourth.id %>" class="collapse" aria-labelledby="heading_<%= @subjects.fourth%>" data-parent="#accordionExample">
-      <div class="card-body">
-        <h2>Tópicos</h2>
-        <% @subjects.fourth.topics.each do |topic| %>
-          <div class="card-body col-md-3 col-xl-3">
-            <% if topic.status == "em andamento" %>
-              <h5 class="badge badge-warning"><%= topic.status %></h5>
-            <% elsif topic.status == "pendente" %>
-              <h5 class="badge badge-danger"><%= topic.status %></h5>
-            <% else topic.status == "concluida" %>
-              <h5 class="badge badge-success"><%= topic.status %></h5>
-            <% end %>
-
-            <h5 class="card-title"><%= topic.name.truncate(20) %></h5>
-            <p class="card-text"><%= topic.description.truncate(30) %></p>
-            <%= link_to "", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
-            <%= link_to "", users_backoffice_topic_path(topic), method: :delete, class:"btn btn-danger fa fa-trash" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="heading_<%= @subjects.fifth.id %>">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_<%= @subjects.fifth.id %>" aria-expanded="false" aria-controls="collapse_<%= @subjects.fifth.id %>">
-          <%= @subjects.fifth.name %>
-        </button>
-        <%= @subjects.fifth.description.truncate(60) %>
-        <%= link_to "", users_backoffice_subject_path(@subjects.fifth), method: :delete, class:"btn btn-danger fa fa-trash", style:"float:right;" %>
-        <%= link_to "", edit_users_backoffice_subject_path(@subjects.fifth), class:"btn btn-secondary fa fa-edit", style:"float:right;" %>
-      </h2>
-    </div>
-    <div id="collapse_<%= @subjects.fifth.id %>" class="collapse" aria-labelledby="heading_<%= @subjects.fifth%>" data-parent="#accordionExample">
-      <div class="card-body">
-        <h2>Tópicos</h2>
-        <% @subjects.fifth.topics.each do |topic| %>
-          <div class="card-body col-md-3 col-xl-3">
-            <% if topic.status == "em andamento" %>
-              <h5 class="badge badge-warning"><%= topic.status %></h5>
-            <% elsif topic.status == "pendente" %>
-              <h5 class="badge badge-danger"><%= topic.status %></h5>
-            <% else topic.status == "concluida" %>
-              <h5 class="badge badge-success"><%= topic.status %></h5>
-            <% end %>
-
-            <h5 class="card-title"><%= topic.name.truncate(20) %></h5>
-            <p class="card-text"><%= topic.description.truncate(30) %></p>
-            <%= link_to "", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
-            <%= link_to "", users_backoffice_topic_path(topic), method: :delete, class:"btn btn-danger fa fa-trash" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-</div><br>
-
-<div class="text-center">
-  <%= paginate @subjects %>
 </div>

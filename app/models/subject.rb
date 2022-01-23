@@ -1,5 +1,5 @@
 class Subject < ApplicationRecord
-  validates :name, :description, presence: true
+  validates :name, presence: true
   has_many :topics, dependent: :destroy
   accepts_nested_attributes_for :topics, reject_if: :all_blank, allow_destroy: true
 

@@ -21,7 +21,7 @@ class UsersBackoffice::TopicsController < UsersBackofficeController
   private
 
   def topic_params
-    params.require(:topic).permit(:subject_id, :name, :description, :status)  
+    params.require(:topic).permit(:subject_id, :title, :description, :due_to, :status)  
   end
 
   def set_topic
