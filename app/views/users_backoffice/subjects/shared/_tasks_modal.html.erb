@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div class="modal fade" id="taskModal_<%= subject.id %>" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="taskModalLabel">Assunto: <%= subject.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="card-body">
+
+          <div class="title-left">
+            <%= link_to " ", edit_users_backoffice_subject_path(subject), class:"btn btn-success btn-round fa fa-plus-square", style:"float:right;width:100px;font-size:15px;" %>
+            <h3>  Últimos tópicos adicionados </h3>
+            <h6>Quantidade de tópicos do assunto: <%= subject.tasks_count %></h6>
+          </div>
+
+          <% subject.tasks.each do |task| %>
+
+            <div class="alert alert-secondary" style="">
+              <p>
+                <%= link_to " ", users_backoffice_task_path(task), method: :delete, data: {confirm: "Apagar #{task.title} ?"}, class:"btn btn-danger fa fa-trash", style:"float:right;" %>
+                <%= link_to " ", edit_users_backoffice_task_path(task), class:"btn btn-secondary fa fa-edit", style:"float:right;" %>
+                <h5 class="card-title"><%= task.title.truncate(20) %></h5>
+                <p class="<%= task_style(task) %>">  Data de Entrega: <%= I18n.l(task.start_time) %></p>
+                <p><%= task.description %></p>
+              </p>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -2,12 +2,12 @@
 
 one:
   subject: one
-  name: MyString
-  description: MyString
-  status: MyString
+  title: MyString
+  description: MyText
+  date_limit: MyString
 
 two:
   subject: two
-  name: MyString
-  description: MyString
-  status: MyString
+  title: MyString
+  description: MyText
+  date_limit: MyString

@@ -2,7 +2,7 @@ class UsersBackoffice::SubjectsController < UsersBackofficeController
   before_action :set_subject, only: [:edit, :update, :destroy]
 
   def index
-    @subjects = Subject.all.order(id: :desc).includes(:topics).page params[:page]
+    @subjects = Subject.all.order(id: :desc).includes(:tasks).page params[:page]
   end
 
   def new
@@ -43,6 +43,6 @@ class UsersBackoffice::SubjectsController < UsersBackofficeController
   end
 
   def subject_params
-    params.require(:subject).permit(:name, topics_attributes: [:id, :title, :description, :due_to, :status, :_destroy])
+    params.require(:subject).permit(:name, tasks_attributes: [:id, :title, :description, :start_time, :finish, :_destroy])
   end
 end

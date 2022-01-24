@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TopicTest < ActiveSupport::TestCase
+class UsersBackoffice::TasksControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

@@ -1,28 +1,36 @@
 <div class="container">
   <div class="title_left">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#taskCalendarModal" style="float:right">
+      <i class="fa fa-plus-square"> Nova atividade</i>
+    </button>
     <h3>Minha Agenda de Eventos</h3>
   </div>
   <div class="clearfix"></div>
 
+
   <div class="x_content">
     <div id="calendar">
       <div class="simple-calendar" style="diplay:inline-block;">
-        <%= month_calendar(events: @topics) do |date, topics| %>
+        <%= month_calendar(events: @tasks) do |date, tasks| %>
           <%= I18n.l(date) %>
           
-          <% topics.first(2).each do |topic| %>
+          <% tasks.first(2).each do |task| %>
             <br>
-            <label class="badge badge-primary" data-toggle="modal" data-target="#topicModal_<%= topic.subject.id %>" title="Clique para ver todos os tópicos desse assunto">
-              <%= topic.subject.name.truncate(20) %>
+            <label class="badge badge-primary" data-toggle="modal" data-target="#taskModal_<%= task.subject.id %>" title="Clique para ver todos os tópicos desse assunto">
+              <%= task.subject.name.truncate(20) %>
             </label>
 
-            <%= render partial: '/users_backoffice/subjects/shared/topics_modal', locals: { subject: topic.subject } %>
+            <%= render partial: '/users_backoffice/subjects/shared/tasks_modal', locals: { subject: task.subject } %>
+
+            <%= render partial: 'users_backoffice/calendar_events/task_calendar_modal' %>
 
           <% end %>
 
         <% end %>
       </div>
     </div>
+
   </div>
 
 </div>

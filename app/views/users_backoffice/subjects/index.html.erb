@@ -1,59 +1,25 @@
-<div class="col-md-12 col-sm-12">
-  <div class="x_panel">
-    <div class="x_title">
-      <h2>Assuntos salvos</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <%= link_to new_users_backoffice_subject_path, class:"btn btn-success btn-block btn-round", style:"width:100px;" do %>
-          <i class="fa fa-plus-square" ></i>
-        <% end %>       
-      </ul>
-      <div class="clearfix"></div>
-    </div>
+<!-- Example split danger button -->
+<div class="title-left">
+  <%= link_to " ", new_users_backoffice_subject_path, class:"btn btn-success btn-round fa fa-plus-square", style:"float:right;width:100px;font-size:15px;" %>
+  <h3>  Últimos assuntos adicionados </h3>
+</div>
 
-    <div class="x_content">
+<% @subjects.each do |subject| %>
 
-      <%= paginate @subjects, class:"text-center" %>
-    
-      <ul class="list-unstyled timeline">
-        <% @subjects.each do |subject| %>
-
-          <li>
-            <div class="block">
-              <div class="tags">
-                <a href="<%= edit_users_backoffice_subject_path(subject) %>" class="tag" title="Clique para editar o assunto ou os tópicos">
-                  <p><%= subject.name %><p>
-                </a>
-              </div>
-              <% subject.topics.last(4).each do |topic| %>
-                <div class="block_content">
-                  <h2 class="title">
-                    <!-- Label trigger modal -->
-                    <label class="label label-primary" data-toggle="modal" data-target="#topicModal_<%= subject.id %>" title="Clique para ver todos os tópicos desse assunto">
-                      <%= topic.title %>
-                    </label>&nbsp;&nbsp;
-                    <%= link_to " ", edit_users_backoffice_topic_path(topic), class:"fa fa-edit" %>
-                    <%= link_to " ", users_backoffice_topic_path(topic), method: :delete, data: {confirm: "Apagar #{topic.title} ?"}, class:"fa fa-trash" %>
-                    
-                    <h5 class="badge badge-<%= topic_style(topic) %>"><%= topic.status %></h5>
-                    
-                  </h2>
-                  <div class="byline">
-                    <span><%= I18n.l(topic.start_time) %></span> by <a><%= current_user.email %></a>
-                  </div>
-                  <p class="excerpt"><%= topic.description %>
-                  </p>
-                </div>
-              <% end %>
-              
-              <%= render partial: '/users_backoffice/subjects/shared/topics_modal', locals: { subject: subject } %>
-
-            </div>
-          </li>
-        <% end %>
-        
-      </ul>
-
-      <%= paginate @subjects %>
-    </div>
+  <div class="alert alert-dark" style="padding-bottom:20px;">
+    &nbsp;&nbsp;
+    <%= link_to "#{subject.name}", edit_users_backoffice_subject_path(subject), class:"label label-primary" %>
+    <%= link_to "", users_backoffice_subject_path(subject), method: :delete, data: {confirm: "Apagar '#{subject.name}' ?"}, class:"btn btn-danger fa fa-trash", style:"float:right;font-size:15px" %>
+    <%= link_to "", edit_users_backoffice_subject_path(subject), class:"btn btn-secondary fa fa-edit", style:"float:right;font-size:15px" %>
+    <button class="btn btn-info" style="float:right;font-size:10px;" data-toggle="modal" data-target="#taskModal_<%= subject.id %>" title="Clique para ver todos os tópicos desse assunto">
+      <i class="fa fa-eye"></i>
+    </button>
   </div>
+
+  <%= render partial: '/users_backoffice/subjects/shared/tasks_modal', locals: { subject: subject } %>
+
+<% end %>
+
+<div class="text-center">
+  <%= paginate @subjects %>
 </div>

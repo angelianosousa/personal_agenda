@@ -6,19 +6,19 @@
     </div>
     <div class="x_content">
       <div class="row">
-        <div class="col">
+        <div class="col-md-5 col-sm-5 col-xs-5">
           <%= f.text_field :title, placeholder:"nome do tópico", class:"form-control", focus: true %>
         </div>
-        <div class="col">
-          <%= select_tag "status", options_for_select(["concluído", "em andamento", "pendente"]), class:"form-control" %>
-        </div>
-        <div class="col">
+        <div class="col-md-5 col-sm-5 col-xs-5">
           <%= f.date_field :start_time, class:"form-control" %>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+          <%= f.check_box "finish", class:"form-control" %>
         </div>
       </div><br>
       
       <div class="row">
-        <div class="col">
+        <div class="col-md-12 col-sm-12 col-xs-12">
           <%= f.text_area :description, placeholder:"descreva...", class:"form-control" %>
         </div>
       </div>

@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   namespace :users_backoffice do
     get 'welcome/index'
     get 'calendar_events/index'
+    post 'tasks', to: "tasks#create"
     
-    resources :topics, only: [:edit, :update, :destroy]
+    resources :tasks, only: [:edit, :update, :destroy]
     resources :subjects
   end
 
