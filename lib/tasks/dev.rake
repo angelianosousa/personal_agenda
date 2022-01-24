@@ -26,7 +26,7 @@ namespace :dev do
 
     @subjects.each do |sub|
       rand(3..8).times do |t|
-        Topic.create(subject_id: sub.id, title: Faker::Educator.university, description: Faker::Lorem.paragraph , due_to: Date.today, status: ["concluído", "pendente", "em andamento"].sample)
+        Topic.create(subject_id: sub.id, title: Faker::Educator.university, description: Faker::Lorem.paragraph , start_time: Faker::Date.backward(days: 14), status: ["concluído", "pendente", "em andamento"].sample)
       end
     end
   end

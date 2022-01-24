@@ -11,7 +11,7 @@
       <tr>
         <td><%= f.text_field :title, placeholder:"nome do tópico", class:"form-control" %></td>
         <td><%= f.text_area :description, placeholder:"descreva...", class:"form-control" %></td>
-        <td><%= f.date_field :due_to, class:"form-control" %></td>
+        <td><%= f.date_field :start_time, class:"form-control" %></td>
         <td><%= select_tag "status", options_for_select(["concluído", "em andamento", "pendente"]), class:"form-control" %></td>        
         <td><%= link_to_remove_association('', f, class:"btn btn-danger fa fa-trash") %></td>
       </tr>

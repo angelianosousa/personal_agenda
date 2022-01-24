@@ -33,6 +33,7 @@ gem 'tty-spinner'
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem "cocoon"
+gem "simple_calendar", "~> 2.4"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -1,0 +1,5 @@
+pt-BR:
+  simple_calendar:
+    previous: "<< antes"
+    next: ">> próximo"
+    week: Semana

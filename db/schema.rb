@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_01_22_194200) do
     t.bigint "subject_id"
     t.string "title"
     t.string "description"
-    t.date "due_to", default: "2022-01-23"
+    t.date "start_time", default: "2022-01-23"
     t.string "status", default: "em andamento"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

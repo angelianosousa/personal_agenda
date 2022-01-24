@@ -27,22 +27,18 @@
               <% subject.topics.last(4).each do |topic| %>
                 <div class="block_content">
                   <h2 class="title">
-                    <!-- Button trigger modal -->
-                    <button class="badge badge-primary" data-toggle="modal" data-target="#topicModal_<%= subject.id %>" title="Clique para ver todos os tópicos desse assunto">
+                    <!-- Label trigger modal -->
+                    <label class="label label-primary" data-toggle="modal" data-target="#topicModal_<%= subject.id %>" title="Clique para ver todos os tópicos desse assunto">
                       <%= topic.title %>
-                    </button>
-                    <%= link_to " ", edit_users_backoffice_topic_path(topic), class:"badge badge-secondary fa fa-edit" %>
-                    <%= link_to " ", users_backoffice_topic_path(topic), method: :delete, data: {confirm: "Apagar #{topic.title} ?"}, class:"badge badge-danger fa fa-trash" %>
-                    <% if topic.status == "em andamento" %>
-                      <h5 class="badge badge-warning"><%= topic.status %></h5>
-                    <% elsif topic.status == "pendente" %>
-                      <h5 class="badge badge-danger"><%= topic.status %></h5>
-                    <% else topic.status == "concluida" %>
-                      <h5 class="badge badge-success"><%= topic.status %></h5>
-                    <% end %>
+                    </label>&nbsp;&nbsp;
+                    <%= link_to " ", edit_users_backoffice_topic_path(topic), class:"secondary fa fa-edit" %>
+                    <%= link_to " ", users_backoffice_topic_path(topic), method: :delete, data: {confirm: "Apagar #{topic.title} ?"}, class:"danger fa fa-trash" %>
+                    
+                    <h5 class="badge badge-<%= topic_style(topic) %>"><%= topic.status %></h5>
+                    
                   </h2>
                   <div class="byline">
-                    <span><%= I18n.l(topic.due_to) %></span> by <a><%= current_user.email %></a>
+                    <span><%= I18n.l(topic.start_time) %></span> by <a><%= current_user.email %></a>
                   </div>
                   <p class="excerpt"><%= topic.description %>
                   </p>
