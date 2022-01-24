@@ -12,18 +12,17 @@
       <div class="modal-body">
         <div class="card-body">
           <% subject.topics.each do |topic| %>
-
-              <div class="col-md-3 col-xl-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title"><%= topic.title.truncate(20) %></h4>
-                    <h5 class="badge badge-<%= topic_style(topic) %>"><%= topic.status %></h5>
-                    <p class="card-text"><%= topic.description.truncate(30) %></p>
-                    <%= link_to " ", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
-                    <%= link_to " ", users_backoffice_topic_path(topic), method: :delete, data: {confirm: "Apagar #{topic.title} ?"}, class:"btn btn-danger fa fa-trash" %>
-                  </div>
+            <div class="col-md-3 col-xl-3">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"><%= topic.title.truncate(20) %></h4>
+                  <h5 class="badge badge-<%= topic_style(topic) %>"><%= topic.status %></h5>
+                  <p class="card-text"><%= topic.description.truncate(30) %></p>
+                  <%= link_to " ", edit_users_backoffice_topic_path(topic), class:"btn btn-secondary fa fa-edit" %>
+                  <%= link_to " ", users_backoffice_topic_path(topic), method: :delete, data: {confirm: "Apagar #{topic.title} ?"}, class:"btn btn-danger fa fa-trash" %>
                 </div>
               </div>
+            </div>
           <% end %>
         </div>
       </div>

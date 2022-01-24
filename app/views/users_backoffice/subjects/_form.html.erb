@@ -13,17 +13,18 @@
 <%= form_with model: [:users_backoffice, @subject], local: true, id:"demo-form2", "data-parsley-validate":"", class:"form-horizontal form-label-left" do |form| %>
 
   <div class="item form-group">
-    <div class="col-md-9 col-sm-9 col-xs-9">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <%= form.text_field :name, class:"form-control", placeholder:"Nome do assunto" %>
     </div>
   </div>
-
+  <br>
+  <h2>Atividades<h2>
   <div id='topics'>
     <%= form.fields_for :topics do |topic| %>
       <%= render partial: "topic_fields", locals: { f: topic } %>
     <% end %>
     <br>
-    <%= link_to_add_association ' Adicionar Tópico', form, :topics, class:"btn btn-success fa fa-plus-square col-md-" %>
+    <%= link_to_add_association '', form, :topics, class:"btn btn-success fa fa-plus-square" %>
   </div>
 
   <div class="ln_solid"></div>

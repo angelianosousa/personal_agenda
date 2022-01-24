@@ -7,6 +7,5 @@
 //= require fastclick/lib/fastclick
 //= require nprogress/nprogress
 //= require bootstrap-progressbar/bootstrap-progressbar.min
-//= require bootstrap-daterangepicker/daterangepicker
 //= require cocoon
 //= require custom

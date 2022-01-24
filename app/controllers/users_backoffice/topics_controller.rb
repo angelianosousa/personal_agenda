@@ -13,9 +13,11 @@ class UsersBackoffice::TopicsController < UsersBackofficeController
   end
 
   def destroy
-    @topic.destroy
-
-    redirect_to users_backoffice_subjects_path
+    if @topic.destroy
+      redirect_to users_backoffice_subjects_path, notice: 'Atividade escluída com sucesso!'
+    else
+      redirect_to users_backoffice_subjects_path
+    end
   end
 
   private

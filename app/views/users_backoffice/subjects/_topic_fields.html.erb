@@ -1,22 +1,27 @@
 <div class="nested-fields">
-  <table>
-    <thead>
-      <th>Titulo</th>
-      <th>Descrição</th>
-      <th>Status</th>
-      <th></th>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td><%= f.text_field :title, placeholder:"nome do tópico", class:"form-control" %></td>
-        <td><%= f.text_area :description, placeholder:"descreva...", class:"form-control" %></td>
-        <td><%= f.date_field :start_time, class:"form-control" %></td>
-        <td><%= select_tag "status", options_for_select(["concluído", "em andamento", "pendente"]), class:"form-control" %></td>        
-        <td><%= link_to_remove_association('', f, class:"btn btn-danger fa fa-trash") %></td>
-      </tr>
+  <div class="x_panel">
+    <div class="x_title">
+      <%= link_to_remove_association '', f, class:"btn btn-danger fa fa-trash", style:"float:left;", wrapper_class: 'my-wrapper-class' %>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <div class="row">
+        <div class="col">
+          <%= f.text_field :title, placeholder:"nome do tópico", class:"form-control", focus: true %>
+        </div>
+        <div class="col">
+          <%= select_tag "status", options_for_select(["concluído", "em andamento", "pendente"]), class:"form-control" %>
+        </div>
+        <div class="col">
+          <%= f.date_field :start_time, class:"form-control" %>
+        </div>
+      </div><br>
       
-    </tbody>
-  </table>
-
+      <div class="row">
+        <div class="col">
+          <%= f.text_area :description, placeholder:"descreva...", class:"form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
