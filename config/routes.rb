@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     
     resources :tasks, except: [:index, :new]
     resources :boards
+    resources :users_manage, only: [:edit, :update, :destroy]
   end
 
   # For Searchs

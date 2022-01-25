@@ -18,7 +18,7 @@
 
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" style="width:100%">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -34,7 +34,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="https://via.placeholder.com/150C/" alt="..." class="img-circle profile_img">
+                <%= image_tag current_user.photo_profile, class:"img-circle profile_img", size:"50x50" if current_user.photo_profile.attached? %>
               </div>
               <div class="profile_info">
                 <span>Seja bem vindo!!,</span>
@@ -100,10 +100,13 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="https://via.placeholder.com/150C/" alt=""><%= current_user.email %>
+                    <%= image_tag current_user.photo_profile, class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" if current_user.photo_profile.attached? %> 
+                    <%= current_user.email %>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                    <%= link_to edit_users_backoffice_users_manage_path(current_user), class:"dropdown-item" do %>
+                      <i class="fa fa-user pull-right"></i> Perfil
+                    <% end %>
                     <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item" do  %>
                       <i class="fa fa-sign-out pull-right"></i> Sair
                     <% end %>

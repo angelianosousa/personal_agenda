@@ -1,15 +1,15 @@
 <!-- Example split danger button -->
 <div class="title-left">
-  <%= link_to new_users_backoffice_board_path, class:"btn btn-primary btn-round", style:"float:right;width:120px;" do %>
+  <%= link_to new_users_backoffice_board_path, class:"btn btn-primary btn-round", style:"float:right;width:100px;font-size:12px;" do %>
     <i class="fa fa-plus-square"></i> Quadro
   <% end %>
 
-  <%= link_to "#", class:"btn btn-success btn-round", "data-toggle":"modal", "data-target":"#taskCalendarModal", style:"float:right;width:120px;font-size:15px;" do %>
+  <%= link_to "#", class:"btn btn-success btn-round", "data-toggle":"modal", "data-target":"#taskCalendarModal", style:"float:right;width:100px;font-size:12px;" do %>
     <i class="fa fa-plus-square"></i> Atividade
   <% end %>
 
-  <h3>  Últimos quadros adicionados </h3>
-</div>
+  <h5>  Últimos quadros adicionados </h5>
+</div><br>
 
 <% @boards.each do |board| %>
 
