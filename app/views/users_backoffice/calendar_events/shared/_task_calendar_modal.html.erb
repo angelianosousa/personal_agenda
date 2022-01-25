@@ -19,8 +19,8 @@
                 <%= select("subject", "subject_id", Subject.all.collect {|sub| [sub.name, sub.id] }, { prompt: true }, class:"form-control") %>
               </div>
             </div>
-            
           </div>
+          
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-6">
               <%= form.label :Título %>
@@ -45,7 +45,7 @@
           </div>  
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             <%= form.submit "Salvar", class:"btn btn-primary", style:"float:none;" %>
           </div>
 

@@ -2,7 +2,7 @@ class UsersBackoffice::TasksController < UsersBackofficeController
   before_action :set_task, except: [:create]
 
   def create
-    @task = Task.create(task_params)
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to users_backoffice_calendar_events_index_path, notice: "Atividade adicionada com sucesso"
@@ -33,7 +33,7 @@ class UsersBackoffice::TasksController < UsersBackofficeController
   private
 
   def task_params
-    params.permit(:subject_id, :title, :description, :start_time, :finish)  
+    params.require(:task).permit(:subject_id, :title, :description, :start_time, :finish)  
   end
 
   def set_task
