@@ -15,16 +15,15 @@
         <%= month_calendar(events: @tasks) do |date, tasks| %>
           <%= I18n.l(date) %>
           
-          <% tasks.first(2).each do |task| %>
+          <% @tasks.first(2).each do |task| %>
             <br>
-            <label class="badge badge-primary" data-toggle="modal" data-target="#taskModal_<%= task.subject.id %>" title="Clique para ver todos os tópicos desse assunto">
-              <%= task.subject.name.truncate(20) %>
+            <label class="badge badge-primary" data-toggle="modal" data-target="#taskModal_<%= task.board.id %>" title="Clique para ver todos os tópicos desse assunto">
+              <%= task.board.title.truncate(20) %>
             </label>
 
-            <%= render partial: '/users_backoffice/subjects/shared/tasks_modal', locals: { subject: task.subject } %>
+            <%= render partial: '/users_backoffice/boards/shared/tasks_modal', locals: { board: task.board } %>
 
-            <%= render partial: 'users_backoffice/calendar_events/shared/task_calendar_modal' %>
-            
+            <%= render partial: 'users_backoffice/calendar_events/shared/task_calendar_modal', locals: { task: @task = Task.new } %> 
           <% end %>
 
         <% end %>

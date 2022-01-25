@@ -5,7 +5,7 @@ namespace :dev do
     show_spinner("Criando novo Banco de Dados...") { %x(rails db:create) }
     show_spinner("Construindo Tabelas...") { %x(rails db:migrate) }
     show_spinner("Adicionando usuários teste...") { %x(rails dev:add_users) }
-    show_spinner("Adicionando assuntos padrões e atividades adjacentes...") { %x(rails dev:add_subjects_and_tasks) }
+    show_spinner("Adicionando assuntos padrões e atividades adjacentes...") { %x(rails dev:add_boards_and_tasks) }
   end
 
   desc "Adicionar usuários"
@@ -15,18 +15,17 @@ namespace :dev do
     end
   end
 
-  task add_subjects_and_tasks: :environment do
+  task add_boards_and_tasks: :environment do
     20.times do |i|
-      Subject.create(
-        name: Faker::Books::CultureSeries.book
+      Board.create(
+        title: Faker::Books::CultureSeries.book,
+        description: Faker::Lorem.paragraph
       )
     end
 
-    @subjects = Subject.all
-
-    @subjects.each do |sub|
+    Board.all.each do |board|
       rand(3..8).times do |t|
-        Task.create(subject_id: sub.id, title: Faker::Educator.university, description: Faker::Lorem.paragraph , start_time: Faker::Date.backward(days: 14))
+        Task.create(board_id: board.id, title: Faker::Educator.university, description: Faker::Lorem.paragraph , start_time: Faker::Date.backward(days: 14))
       end
     end
   end

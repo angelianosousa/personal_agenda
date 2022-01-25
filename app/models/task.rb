@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  belongs_to :subject, counter_cache: true
+  belongs_to :board, counter_cache: true
 
-  validates :start_time, :title, presence: true
+  validates :start_time, presence: true
 end

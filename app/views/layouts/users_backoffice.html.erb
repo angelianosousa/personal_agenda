@@ -24,7 +24,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <%= link_to users_backoffice_subjects_path, class:"site_title" do %>
+              <%= link_to users_backoffice_boards_path, class:"site_title" do %>
                 <i class="fa fa-book"></i> <span>Agenda Pessoal</span>
               <% end %>
             </div>
@@ -56,7 +56,7 @@
                     <% end %>
                   </li>
                   <li>
-                    <%= link_to users_backoffice_subjects_path do %>
+                    <%= link_to users_backoffice_boards_path do %>
                       <i class="fa fa-comments"></i> Assuntos
                     <% end %>
                   </li>
@@ -184,15 +184,6 @@
         <div class="right_col" role="main">
           <div class="row" style="display: inline;">
             <div class="col-md-12 col-sm-12 ">
-
-              <% if notice %>
-                <div class="alert alert-success alert-dismissible " role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                  </button>
-                  <%= notice %>
-                </div>
-              <% end %>
-
               <%= yield %>
             </div>
           </div>
@@ -212,5 +203,17 @@
 
     <%= javascript_include_tag 'users_backoffice' %>
 
+    <% if notice %>
+      <%= javascript_tag do %>
+        $.bootstrapGrowl("<%= notice %>", {
+          type: 'success', // (null, 'info', 'error', 'success')
+          offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+          align: 'right', // ('left', 'right', or 'center')
+          width: 250, // (integer, or 'auto')
+          delay: 4000,
+          allow_dismiss: true,
+        });
+      <% end %>
+    <% end %>
   </body>
 </html>
