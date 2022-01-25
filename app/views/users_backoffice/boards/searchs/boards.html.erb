@@ -1,0 +1,42 @@
+<!-- Example split danger button -->
+<div class="title-left">
+  <%= form_with url: search_boards_path, method: :get, style:"float:right;" do |form| %>
+    <%= form.text_field :title, class:"form-control-sm" %>
+    <%= form.submit 'Pesquisar', class:"fa fa-search" %>
+  <% end %>
+
+  <%= link_to new_users_backoffice_board_path, class:"btn btn-primary btn-round", style:"float:right;width:120px;" do %>
+    <i class="fa fa-plus-square"></i> Quadro
+  <% end %>
+
+  <%= link_to "#", class:"btn btn-success btn-round", "data-toggle":"modal", "data-target":"#taskCalendarModal", style:"float:right;width:120px;font-size:15px;" do %>
+    <i class="fa fa-plus-square"></i> Atividade
+  <% end %>
+
+  <h3>  Últimos quadros adicionados </h3>
+</div>
+
+<% @boards.each do |board| %>
+
+  <div class="alert alert-dark" style="padding-bottom:20px;">
+    &nbsp;&nbsp;
+    <p>
+      <%= link_to "", users_backoffice_board_path(board), method: :delete, data: {confirm: "Apagar '#{board.title}' ?"}, class:"btn btn-danger fa fa-trash", style:"float:right;font-size:15px" %>
+      <%= link_to "", edit_users_backoffice_board_path(board), class:"btn btn-secondary fa fa-edit", style:"float:right;font-size:15px" %>
+      <button class="btn btn-info" style="float:right;font-size:10px;" data-toggle="modal" data-target="#taskModal_<%= board.id %>" title="Clique para ver todos os tópicos desse assunto">
+        <i class="fa fa-eye"></i>
+      </button>
+    <h5><%= link_to "#{board.title}", edit_users_backoffice_board_path(board) %></h5>
+    <p><strong>Descrição: </strong><%= board.description %></p>
+    </p>
+  </div>
+
+  <%= render partial: '/users_backoffice/boards/shared/tasks_modal', locals: { board: board } %>
+
+<% end %>
+
+<div class="text-center">
+  <%= paginate @boards %>
+</div>
+
+<%= render partial: 'users_backoffice/calendar_events/shared/task_calendar_modal', locals: { task: @task = Task.new } %>

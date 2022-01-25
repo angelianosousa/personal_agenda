@@ -25,7 +25,7 @@ class UsersBackoffice::TasksController < UsersBackofficeController
   def destroy
     @task.destroy
 
-    redirect_to users_backoffice_calendar_events, notice: "Atividade apagada com sucesso!"
+    redirect_to users_backoffice_calendar_events_index_url, notice: "Atividade apagada com sucesso!"
   end
 
   private

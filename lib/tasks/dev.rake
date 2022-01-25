@@ -25,7 +25,7 @@ namespace :dev do
 
     Board.all.each do |board|
       rand(3..8).times do |t|
-        Task.create(board_id: board.id, title: Faker::Educator.university, description: Faker::Lorem.paragraph , start_time: Faker::Date.backward(days: 14))
+        Task.create(board_id: board.id, title: Faker::Educator.university, description: Faker::Lorem.paragraph , start_time: Faker::Date.backward(days: 14), finish: ["true", "false"])
       end
     end
   end

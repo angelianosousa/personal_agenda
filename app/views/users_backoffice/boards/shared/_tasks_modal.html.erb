@@ -14,8 +14,8 @@
 
           <div class="title-left">
             <%= link_to " ", edit_users_backoffice_board_path(board), class:"btn btn-success btn-round fa fa-plus-square", style:"float:right;width:100px;font-size:15px;" %>
-            <h3>  Últimos quadros adicionados </h3>
-            <h6>Quantidade de atividades do assunto: <%= board.tasks_count %></h6>
+            <h3>  Últimas atividades adicionadas </h3>
+            <h6>Quantidade: <%= board.tasks_count %></h6>
           </div>
 
           <% board.tasks.each do |task| %>
