@@ -34,7 +34,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <%= image_tag current_user.photo_profile, class:"img-circle profile_img", size:"50x50" if current_user.photo_profile.attached? %>
+                <% if current_user.photo_profile.attached? %>
+                  <%= image_tag current_user.photo_profile, class:"img-circle profile_img", size:"50x50" %>
+                <% else %>
+                  <%= image_tag "https://via.placeholder.com/150C/", class:"img-circle profile_img", size:"50x50", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                <% end %>
               </div>
               <div class="profile_info">
                 <span>Seja bem vindo!!,</span>
@@ -100,7 +104,11 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <%= image_tag current_user.photo_profile, class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" if current_user.photo_profile.attached? %> 
+                    <% if current_user.photo_profile.attached? %>
+                      <%= image_tag current_user.photo_profile, class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                    <% else %>
+                      <%= image_tag "https://via.placeholder.com/150C/", class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                    <% end %>
                     <%= current_user.email %>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
@@ -133,7 +141,13 @@
                     </li>
                     <li class="nav-item">
                       <a class="dropdown-item">
-                        <span class="image"><img src="https://via.placeholder.com/150C/" alt="Profile Image" /></span>
+                        <span class="image">
+                          <% if current_user.photo_profile.attached? %>
+                            <%= image_tag current_user.photo_profile, class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                          <% else %>
+                            <%= image_tag "https://via.placeholder.com/150C/", class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                          <% end %>
+                        </span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -145,7 +159,13 @@
                     </li>
                     <li class="nav-item">
                       <a class="dropdown-item">
-                        <span class="image"><img src="https://via.placeholder.com/150C/" alt="Profile Image" /></span>
+                        <span class="image">
+                          <% if current_user.photo_profile.attached? %>
+                            <%= image_tag current_user.photo_profile, class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                          <% else %>
+                            <%= image_tag "https://via.placeholder.com/150C/", class:"user-profile dropdown-toggle", size:"10x10", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
+                          <% end %>
+                        </span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>

@@ -12,15 +12,17 @@
 
   <div class="item form-group">
     <div class="col-md-12 col-sm-12 col-xs-12">
+      <%= form.label :Titulo %><br>
       <%= form.text_field :title, class:"form-control", placeholder:"Nome do assunto" %>
     </div>
-  </div>
+  </div><br>
   <div class="item form-group">
     <div class="col-md-12 col-sm-12 col-xs-12">
+      <%= form.label :Descrição %><br>
       <%= form.text_area :description, class:"form-control", placeholder:"Descreva..." %>
     </div>
   </div>
-  <br>
+
   <h2>Atividades<h2>
   <div id='tasks'>
     <%= form.fields_for :tasks do |task| %>

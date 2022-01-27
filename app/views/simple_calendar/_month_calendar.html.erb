@@ -1,18 +1,23 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
     <div class="label label-default">
-      <%= link_to t('simple_calendar.previous', default: 'next'), calendar.url_for_previous_view, class:"badge badge-primary btn-round" %>&nbsp;
-      <span class="calendar-title label"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>&nbsp;
-      <%= link_to t('simple_calendar.next', default: 'previous'), calendar.url_for_next_view, class:"badge badge-primary btn-round" %>
-      <%= link_to new_users_backoffice_board_path, class:"btn btn-primary btn-round", style:"float:right;width:100px;font-size:12px;" do %>
-        <i class="fa fa-plus-square"></i> Quadro
-      <% end %>
-      <!-- Button trigger modal -->
-      <%= link_to "#", class:"btn btn-success btn-round", "data-toggle":"modal", "data-target":"#taskCalendarModal", style:"float:right;font-size:12px;" do %>
-        <i class="fa fa-plus-square"> Atividade</i>
-      <% end %>
+      <div class="row">
+        <div class="col">
+          <%= link_to t('simple_calendar.previous', default: 'next'), calendar.url_for_previous_view, class:"badge badge-primary btn-round" %>&nbsp;
+          <span class="calendar-title label"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>&nbsp;
+          <%= link_to t('simple_calendar.next', default: 'previous'), calendar.url_for_next_view, class:"badge badge-primary btn-round" %>
+        </div>
+        <div class="col">
+          <%= link_to new_users_backoffice_board_path, class:"btn btn-primary btn-round", style:"float:right;font-size:12px;", title:"Adicionar atividade" do %>
+            <i class="fa fa-plus-square"></i>
+          <% end %>
+          <%= link_to "#", class:"btn btn-success btn-round", "data-toggle":"modal", "data-target":"#taskCalendarModal", style:"float:right;font-size:12px;", title:"Adicionar quadro" do %>
+            <i class="fa fa-plus-square"></i>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div><br><br>
+  </div><br>
 
   <table class="table table-striped">
     <thead class="thead-dark">
