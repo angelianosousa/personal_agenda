@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="taskCalendarModalLabel">Nova atividade</h5>
+        <h5 class="modal-title" id="taskCalendarModalLabel"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -29,7 +29,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <%= form.label :'Assunto:' %>
               <div class="item form-group">
-                <%= form.select(:board_id, Board.all.collect {|board| [board.title, board.id] }, prompt: true, class:'form-control') %>
+                <%= form.select(:board, boards_for_select, {prompt: true}, {class:"form-control"}) %>
               </div>
             </div>
           </div>

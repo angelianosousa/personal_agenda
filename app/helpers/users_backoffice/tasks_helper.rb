@@ -15,4 +15,8 @@ module UsersBackoffice::TasksHelper
     end
     
   end
+
+  def boards_for_select
+    Board.all.collect { |board| [board.title, board.id]}
+  end
 end

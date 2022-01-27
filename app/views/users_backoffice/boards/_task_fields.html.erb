@@ -8,7 +8,7 @@
         <div class="col-md-1 col-sm-1 col-xs-1">
           <%= f.check_box "finish", class:"form-control" %>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-8">
+        <div class="col-md-3 col-sm-3 col-xs-3">
           <%= link_to_remove_association '', f, class:"btn btn-danger fa fa-trash", style:"float:right;", wrapper_class: 'my-wrapper-class' %>
         </div>
       </div>
@@ -16,18 +16,18 @@
     </div>
     <div class="x_content">
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="col-md-3 col-sm-3 col-xs-3">
           <%= f.label :Titulo %>
           <%= f.text_field :title, placeholder:"nome do tópico", class:"form-control", focus: true %>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="col-md-3 col-sm-3 col-xs-3">
           <%= f.label :Data_de_conclusão %>
           <%= f.date_field :start_time, class:"form-control" %>
         </div>
       </div>
       <br>
       <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-6">
           <%= f.label :Descrição %>
           <%= f.text_area :description, placeholder:"descreva...", class:"form-control" %>
         </div>
