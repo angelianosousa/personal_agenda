@@ -12,11 +12,13 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( 
   users_backoffice.js users_backoffice.css
   user_devise.js user_devise.css
+  website.js website.css
 )
 
 # lib/assets
 Rails.application.config.assets.precompile += %w( 
   custom.js custom.css
+  jumbotron.css
 )
 
 # Precompile additional assets.
