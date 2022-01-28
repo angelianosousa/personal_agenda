@@ -16,8 +16,9 @@ namespace :dev do
   end
 
   task add_boards_and_tasks: :environment do
-    20.times do |i|
+    50.times do |i|
       Board.create(
+        # user_id: User.all.sample.id,
         title: Faker::Books::CultureSeries.book,
         description: Faker::Lorem.paragraph
       )

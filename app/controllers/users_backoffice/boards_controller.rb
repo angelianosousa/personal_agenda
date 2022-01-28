@@ -2,7 +2,7 @@ class UsersBackoffice::BoardsController < UsersBackofficeController
   before_action :set_board, only: [:edit, :update, :destroy]
 
   def index
-    @boards = Board.all.order(id: :desc).includes(:tasks).page params[:page]
+    @boards = Board.order(id: :desc).includes(:tasks).page params[:page]
   end
 
   def new

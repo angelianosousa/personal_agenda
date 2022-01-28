@@ -10,32 +10,42 @@
     </div>
   <% end %>
 
-  <div class="item form-group">
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <%= form.label :Titulo %><br>
+  <div class="item form-group" >
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <strong><%= form.label :Titulo %></strong><br>
       <%= form.text_field :title, class:"form-control", placeholder:"Nome do assunto" %>
-    </div>
-  </div><br>
-  <div class="item form-group">
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <%= form.label :Descrição %><br>
-      <%= form.text_area :description, class:"form-control", placeholder:"Descreva..." %>
     </div>
   </div>
 
-  <h2>Atividades<h2>
-  <div id='tasks'>
-    <%= form.fields_for :tasks do |task| %>
-      <%= render partial: "task_fields", locals: { f: task } %>
-    <% end %>
-    <br>
-    <%= link_to_add_association '', form, :tasks, class:"btn btn-success fa fa-plus-square" %>
+  <div class="item form-group">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <strong><%= form.label :Descrição %></strong><br>
+      <%= form.text_area :description, rows:"5", class:"form-control", placeholder:"Descreva..." %>
+    </div>
+  </div>
+  <hr>
+
+  <div class="item form-group">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <h2>Atividades</h2>
+    </div>
+  </div>
+
+  <div id='tasks' class="item form-group">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <%= form.fields_for :tasks do |task| %>
+        <%= render partial: "task_fields", locals: { f: task } %>
+      <% end %>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <%= link_to_add_association 'Atividade', form, :tasks, class:"btn btn-success fa fa-plus-square" %>
+      </div>
+    </div>
   </div>
 
   <div class="ln_solid"></div>
 
   <div class="item form-group">
-    <div class="col-md-9">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <%= form.submit "Salvar", class:"btn btn-primary", style:"float:none;" %>
     </div>
   </div>

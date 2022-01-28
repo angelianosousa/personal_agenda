@@ -1,10 +1,3 @@
-<div class="container">
-  <div class="title_left">
-    <h5>Minha Agenda de Eventos</h5>
-  </div>
-  <div class="clearfix"></div>
-
-
   <div class="x_content">
     <div id="calendar">
       <div class="simple-calendar" style="diplay:inline-block;">
@@ -19,7 +12,6 @@
 
             <%= render partial: '/users_backoffice/boards/shared/tasks_modal', locals: { board: task.board } %>
 
-            <%= render partial: 'users_backoffice/calendar_events/shared/task_calendar_modal', locals: { task: @task = Task.new } %> 
           <% end %>
 
         <% end %>
