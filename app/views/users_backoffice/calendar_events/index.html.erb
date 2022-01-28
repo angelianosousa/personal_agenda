@@ -6,7 +6,7 @@
           
           <% tasks.first(2).each do |task| %>
             <br>
-            <label class="badge badge-primary" data-toggle="modal" data-target="#taskModal_<%= task.board.id %>" title="Clique para ver todos os tópicos desse assunto">
+            <label class="badge badge-primary" data-toggle="modal" data-target="#taskModal_<%= task.board.id %>" title="Clique para ver todos os tópicos desse quadro">
               <%= task.board.title.truncate(20) %>
             </label>
 

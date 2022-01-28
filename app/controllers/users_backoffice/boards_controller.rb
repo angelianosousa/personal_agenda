@@ -2,7 +2,7 @@ class UsersBackoffice::BoardsController < UsersBackofficeController
   before_action :set_board, only: [:edit, :update, :destroy]
 
   def index
-    @boards = Board.order(id: :desc).includes(:tasks).page params[:page]
+    @boards = Board.where(user_id: current_user.id).order(id: :desc).includes(:tasks).page params[:page]
   end
 
   def new
@@ -16,7 +16,7 @@ class UsersBackoffice::BoardsController < UsersBackofficeController
     @board = Board.new(board_params)
 
     if @board.save
-      redirect_to users_backoffice_boards_path, notice: "Assunto adicionado com sucesso!!"
+      redirect_to users_backoffice_boards_path, notice: "Quadro adicionado com sucesso!!"
     else
       render :new
     end
@@ -24,7 +24,7 @@ class UsersBackoffice::BoardsController < UsersBackofficeController
 
   def update
     if @board.update(board_params)
-      redirect_to users_backoffice_boards_path, notice: "Assunto atualizado com sucesso!!"
+      redirect_to users_backoffice_boards_path, notice: "Quadro atualizado com sucesso!!"
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class UsersBackoffice::BoardsController < UsersBackofficeController
   def destroy
     @board.destroy
 
-    redirect_to users_backoffice_boards_path, notice: "Assunto removido com sucesso!!"
+    redirect_to users_backoffice_boards_path, notice: "Quadro removido com sucesso!!"
   end
 
   private

@@ -2,7 +2,6 @@ class UsersBackoffice::CalendarEventsController < UsersBackofficeController
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
     
-    @tasks = Task.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
-    # @tasks = Board.where(user_id: current_user)
+    @tasks = Task.search_tasks(current_user, start_date)
   end
 end

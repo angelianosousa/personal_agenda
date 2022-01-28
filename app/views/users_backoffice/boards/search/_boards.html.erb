@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xl-12">
-      <%= form_with url: "#", method: :get, local: true, class:"form-group top_search" do |form| %>
+      <%= form_with url: search_boards_path, method: :get, local: true, class:"form-group top_search" do |form| %>
         <div class="col-md-10 col-xl-10 col-sm-10">
           <%= form.text_field :title, class:"form-control", placeholder:"..." %>
         </div>
