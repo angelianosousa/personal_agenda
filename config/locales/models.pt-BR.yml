@@ -1,0 +1,35 @@
+'pt-BR':
+  active_record:
+    models:
+      user:
+        one: Usuário
+        other: Usuário
+      board:
+        one: Quadro
+        other: Quadros
+      task:
+        one: Atividade
+        other: Atividades
+    attributes:
+      user:
+        id: Código
+        email: Email
+        password: Senha
+        password_confirmation: Confirmação de Senha
+        created_at: Criado em
+        updated_at: Atualizado em
+      board:
+        id: Código
+        title: Titulo
+        description: Descrição
+        created_at: Criado em
+        updated_at: Atualizado em
+      task:
+        id: Código
+        board_id: Quadro da atividade
+        title: Atividade
+        description: Atividades
+        start_time: Inicio da atividade
+        finish: Conclusão
+        created_at: Criado em
+        updated_at: Atualizado em

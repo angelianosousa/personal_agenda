@@ -23,6 +23,16 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
+
+            <% flash.each do |name, msg| %>
+              <% if msg.is_a?(String) %>
+                <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                  <a class="close" data-dismiss="alert">&#215;</a>
+                  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                </div>
+              <% end %>
+            <% end %>
+            
             <%= yield %>
           </section>
         </div>
@@ -32,6 +42,15 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'user_devise' %>
+
+    <% if flash %>
+        <% flash.each do |key, value| %>
+          <%= javascript_tag do %>
+            var notify =$.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
+            notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
+          <% end %>
+        <% end %>
+    <% end %>
 
   </body>
 </html>

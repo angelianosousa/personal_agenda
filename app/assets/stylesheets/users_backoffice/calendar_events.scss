@@ -1,0 +1,35 @@
+// Place all the styles related to the users_backoffice/calendar_events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+*= require simple_calendar
+*/
+
+.simple-calendar {
+  .day {
+    color: red;
+  }
+
+  .wday-0 {
+    background-color: rgb(183, 185, 185);
+  }
+
+  .wday-6 {
+    background-color: rgb(183, 185, 185);
+  }
+
+  .current-month {
+    color: black;
+  }
+
+  .today {
+    background-color: green;
+    color: white;
+  }
+
+  th {
+    background-color: rgb(27, 19, 20);
+    color: white;
+  }
+}

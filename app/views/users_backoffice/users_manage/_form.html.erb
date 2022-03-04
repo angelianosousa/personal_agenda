@@ -1,0 +1,55 @@
+<%= form_with url: users_backoffice_users_manage_path, model: current_user, local: true, id:"demo-form2", "data-parsley-validate":"", class:"form-horizontal form-label-left" do |form| %>
+  <% if current_user.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <ol>
+        <% current_user.errors.full_messages.each do |message| %>
+          <li> <%= message %> </li>
+        <% end %>
+      </ol>
+    </div>
+  <% end %>
+
+  <% if current_user.photo_profile.attached? %>
+    <%= image_tag current_user.photo_profile, size:"200x200", class:"img-circle" %><br><br>
+    <%= link_to "Remover Foto", users_backoffice_users_manage_path, method: :delete, class:"btn btn-danger fa fa-trash" %>
+  <% else %>
+    <div class="item form-group">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <%= form.label :Foto_de_perfil %><br>
+        <%= form.file_field :photo_profile, class:"form-control-md" %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="item form-group">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <%= form.label :Email %>
+      <%= form.email_field :email, class:"form-control", placeholder: "example@email.com" %>
+    </div>
+  </div>
+
+  <div class="item form-group">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <%= form.label :Senha %>
+      <%= form.password_field :password, class:"form-control", placeholder:"**********" %>
+    </div>
+  </div>
+
+  <div class="item form-group">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <%= form.label :Confirmação_de_senha %>
+      <%= form.password_field :password_confirmation, class:"form-control", placeholder:"**********" %>
+    </div>
+  </div>
+
+  <div class="ln_solid"></div>
+
+  <div class="item form-group">
+    <div class="col-md-9">
+      <%= form.submit "Salvar", class:"btn btn-primary", style:"float:none;" %>
+    </div>
+  </div>
+
+<% end %>
