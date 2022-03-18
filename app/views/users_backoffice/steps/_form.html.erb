@@ -1,0 +1,32 @@
+<%= form_with(model: [:users_backoffice, step], local: true) do |form| %>
+  <% if step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+        <% step.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class='row'>
+    <div class='col'>
+      <%= form.label :'Nome do passo' %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+    <div class='col'>
+      <%= form.label :'Data Limite' %>
+      <%= form.date_field :deadline, class:"form-control" %>
+    </div>
+  </div>
+  
+  <div class="ln_solid"></div>
+  
+  <div class="item form-group">
+    <%= form.submit "Salvar", class:"btn btn-primary" %>
+    <%= link_to 'Cancel', users_backoffice_steps_path, class:"btn btn-danger" %>
+  </div>
+
+<% end %>

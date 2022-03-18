@@ -1,0 +1,24 @@
+<div class="container">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Meus Objetivos</a>
+
+    <%= link_to 'New Objective', new_users_backoffice_objective_path, class:"btn btn-outline-success" %>
+  </nav>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<% @objectives.each do |objective| %>
+  <div class='container'>
+    <div class='card'>
+      <nav class="navbar navbar-light bg-light">
+        <p><strong>Objetivo: </strong> <%= objective.name %> | <strong>Data Limite: </strong> <%= objective.deadline.strftime("%d %b") %> | <strong>Passos: </strong> <%= objective.steps.size %></p>
+
+        <div class='nav-item'>
+          <%= link_to '', edit_users_backoffice_objective_path(objective), class:"btn btn-secondary fa fa-edit" %>
+          <%= link_to '', users_backoffice_objective_path(objective), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger fa fa-trash" %>
+        </div>
+      </nav>      
+    </div><br>
+  </div>
+<% end %>

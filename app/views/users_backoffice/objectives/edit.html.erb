@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 ">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Editando Objetivo</h2>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="x_content">
+        <%= render 'form', objective: @objective %>
+      </div>
+
+      <div class='container'>
+        <h2>Passos</h2>
+        <% @objective.steps.each do |step| %>
+          <div class='card'>
+            <nav class="navbar navbar-light bg-light">
+              <p><strong>Objetivo: </strong> <%= step.name %> | <strong>Data Limite: </strong> <%= step.deadline.strftime("%d %b") %> </p>
+
+              <div class='nav-item'>
+                <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-secondary fa fa-edit" %>
+                <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger fa fa-trash" %>
+              </div>
+            </nav>      
+          </div><br>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
