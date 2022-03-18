@@ -31,12 +31,12 @@ class UsersBackoffice::StepsController < UsersBackofficeController
   end
 
   def check_step
-    @step.done = true
+    @step.update done: true
     redirect_to users_backoffice_steps_url, notice: "Passo marcado com sucesso!"
   end
 
   def uncheck_step
-    @step.done = false
+    @step.update done: false
     redirect_to users_backoffice_steps_url, notice: "Passo desmarcado com sucesso!"
   end
 

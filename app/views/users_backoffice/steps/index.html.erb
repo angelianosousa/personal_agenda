@@ -9,7 +9,7 @@
 </div><br>
 
 <% @steps.each do |step| %>
-  <p><strong>Data Limite: </strong> <%= step.deadline.strftime("%d %b") %></p>
+  <p><span class='icon'><i class='fa fa-calendar'></i></span>  <%= step.deadline.strftime("%d %b") %></p>
 
   <div class='card'>
     <nav class="navbar navbar-light bg-light">
@@ -17,12 +17,12 @@
 
       <div class='nav-item'>
         <% unless step.done %>
-          <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check", style:"color:green" %>
+          <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check-square-o", style:"color:green;font-size:20px;" %>
         <% else %>
-          <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check", style:"color:red" %>
+          <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check-square", style:"color:green;font-size:20px;" %>
         <% end %>
-        <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit" %>
-        <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash" %>
+        <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
+        <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>
       </div>
     </nav>
 
