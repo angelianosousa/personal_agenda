@@ -3,7 +3,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
   # GET /steps or /steps.json
   def index
-    @steps = Step.order(deadline: :asc).includes(:objective)
+    @steps = Step.steps_by_deadline(current_user.objectives.ids)
   end
 
   # GET /steps/1 or /steps/1.json
@@ -22,6 +22,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
   # POST /steps or /steps.json
   def create
     @step = Step.new(step_params)
+    @step.user_id = current_user.id
 
     respond_to do |format|
       if @step.save

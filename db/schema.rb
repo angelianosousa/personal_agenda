@@ -26,12 +26,14 @@ ActiveRecord::Schema.define(version: 2022_03_17_183709) do
   end
 
   create_table "steps", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name"
     t.date "deadline"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "objective_id", null: false
     t.index ["objective_id"], name: "index_steps_on_objective_id"
+    t.index ["user_id"], name: "index_steps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,4 +50,5 @@ ActiveRecord::Schema.define(version: 2022_03_17_183709) do
 
   add_foreign_key "objectives", "users"
   add_foreign_key "steps", "objectives"
+  add_foreign_key "steps", "users"
 end

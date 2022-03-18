@@ -23,7 +23,7 @@ namespace :dev do
   task add_steps: :environment do
     Objective.all.each do |objective|
       rand(2..5).times do
-        Step.create(objective: objective, name: Faker::Esport.event, deadline: Faker::Date.in_date_period)
+        Step.create(user_id: 1, objective: objective, name: Faker::Esport.event, deadline: Faker::Date.in_date_period)
       end
     end
   end

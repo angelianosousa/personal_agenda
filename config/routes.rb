@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-
+  
   namespace :users_backoffice do
     resources :steps
     resources :objectives
+    get 'calendars/index'
   end
 
   root to: "users_backoffice/welcome#index"
