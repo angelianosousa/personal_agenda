@@ -3,7 +3,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
   # GET /steps or /steps.json
   def index
-    @steps = Step.all
+    @steps = Step.order(deadline: :asc).includes(:objective)
   end
 
   # GET /steps/1 or /steps/1.json
@@ -65,6 +65,6 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
     # Only allow a list of trusted parameters through.
     def step_params
-      params.require(:step).permit(:name, :deadline)
+      params.require(:step).permit(:objective_id, :name, :deadline)
     end
 end

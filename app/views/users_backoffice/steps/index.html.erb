@@ -1,33 +1,27 @@
 <div class="container">
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-light" style="background-color:#191970">
     <a class="navbar-brand" href="#">Meus Passos</a>
+
+    <div class='nav-item'>
+      <%= link_to '', new_users_backoffice_step_path, class:"fa fa-plus text-white", style:"font-size:30px;" %>
+    </div>
   </nav>
 </div>
 
 <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Deadline</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @steps.each do |step| %>
+  <p><strong>Data Limite: </strong> <%= step.deadline.strftime("%d %b") %></p>
 
-  <tbody>
-    <% @steps.each do |step| %>
-      <tr>
-        <td><%= step.name %></td>
-        <td><%= step.deadline %></td>
-        <td><%= link_to 'Show', users_backoffice_step_path(step) %></td>
-        <td><%= link_to 'Edit', edit_users_backoffice_step_path(step) %></td>
-        <td><%= link_to 'Destroy', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class='card'>
+    <nav class="navbar navbar-light bg-light">
+      <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <strong>Objetivo: </strong> <%= step.objective.name %></h5>
 
-<br>
+      <div class='nav-item'>        
+        <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit" %>
+        <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash" %>
+      </div>
+    </nav>
 
-<%= link_to 'New Step', new_users_backoffice_step_path %>
+  </div> 
+<% end %>
