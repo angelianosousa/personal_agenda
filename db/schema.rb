@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2022_03_17_183709) do
     t.bigint "user_id", null: false
     t.string "name"
     t.date "deadline"
+    t.text "description", default: ""
+    t.boolean "done", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "objective_id", null: false

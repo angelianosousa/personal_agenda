@@ -4,9 +4,7 @@
 
     <%= link_to '', new_users_backoffice_objective_path, class:"fa fa-plus text-white", style:"font-size:30px;" %>
   </nav>
-</div>
-
-<p id="notice"><%= notice %></p>
+</div><br>
 
 <% @objectives.each do |objective| %>
   <div class='container'>
@@ -42,3 +40,5 @@
     </div> 
   </div><br>
 <% end %>
+
+<%= paginate @objectives %><br>

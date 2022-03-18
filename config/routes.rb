@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :steps
     resources :objectives
     get 'calendars/index'
+    post 'steps/:id/check', to: "steps#check_step", as: "check_step"
+    post 'steps/:id/uncheck', to: "steps#uncheck_step", as: "uncheck_step"
   end
 
   root to: "users_backoffice/welcome#index"

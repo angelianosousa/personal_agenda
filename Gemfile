@@ -32,6 +32,8 @@ gem 'faker'
 gem 'tty-spinner'
 gem 'groupdate'
 gem "simple_calendar", "~> 2.4"
+gem 'kaminari'
+gem 'kaminari-i18n'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

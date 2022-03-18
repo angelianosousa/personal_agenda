@@ -6,9 +6,7 @@
       <%= link_to '', new_users_backoffice_step_path, class:"fa fa-plus text-white", style:"font-size:30px;" %>
     </div>
   </nav>
-</div>
-
-<p id="notice"><%= notice %></p>
+</div><br>
 
 <% @steps.each do |step| %>
   <p><strong>Data Limite: </strong> <%= step.deadline.strftime("%d %b") %></p>
@@ -17,7 +15,12 @@
     <nav class="navbar navbar-light bg-light">
       <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <strong>Objetivo: </strong> <%= step.objective.name %></h5>
 
-      <div class='nav-item'>        
+      <div class='nav-item'>
+        <% unless step.done %>
+          <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check", style:"color:green" %>
+        <% else %>
+          <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check", style:"color:red" %>
+        <% end %>
         <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit" %>
         <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash" %>
       </div>
@@ -25,3 +28,5 @@
 
   </div><br>
 <% end %>
+
+<%= paginate @steps %><br>

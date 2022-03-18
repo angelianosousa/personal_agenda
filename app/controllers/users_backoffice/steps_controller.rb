@@ -1,18 +1,13 @@
 class UsersBackoffice::StepsController < UsersBackofficeController
-  before_action :set_step, only: %i[ show edit update destroy ]
+  before_action :set_step, only: %i[ show edit update destroy check_step uncheck_step ]
 
   # GET /steps or /steps.json
   def index
-    @steps = Step.steps_by_deadline(current_user.objectives.ids)
+    @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
   end
 
   # GET /steps/1 or /steps/1.json
   def show
-  end
-
-  # GET /steps/new
-  def new
-    @step = Step.new
   end
 
   # GET /steps/1/edit
@@ -33,6 +28,16 @@ class UsersBackoffice::StepsController < UsersBackofficeController
         format.json { render json: @step.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def check_step
+    @step.done = true
+    redirect_to users_backoffice_steps_url, notice: "Passo marcado com sucesso!"
+  end
+
+  def uncheck_step
+    @step.done = false
+    redirect_to users_backoffice_steps_url, notice: "Passo desmarcado com sucesso!"
   end
 
   # PATCH/PUT /steps/1 or /steps/1.json
@@ -66,6 +71,6 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
     # Only allow a list of trusted parameters through.
     def step_params
-      params.require(:step).permit(:objective_id, :name, :deadline)
+      params.require(:step).permit(:objective_id, :name, :deadline, :description, :done)
     end
 end

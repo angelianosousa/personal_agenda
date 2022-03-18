@@ -3,11 +3,7 @@ class UsersBackoffice::ObjectivesController < UsersBackofficeController
 
   # GET /objectives or /objectives.json
   def index
-    @objectives = Objective.all.includes(:steps)
-  end
-
-  # GET /objectives/1 or /objectives/1.json
-  def show
+    @objectives = Objective.all.includes(:steps).page(params[:page])
   end
 
   # GET /objectives/new

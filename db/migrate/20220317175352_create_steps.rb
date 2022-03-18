@@ -5,6 +5,7 @@ class CreateSteps < ActiveRecord::Migration[6.0]
       t.string :name
       t.date :deadline
       t.text :description, default: ""
+      t.boolean :done, default: false
 
       t.timestamps
     end
