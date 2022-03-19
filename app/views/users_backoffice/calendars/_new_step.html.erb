@@ -1,0 +1,52 @@
+<!-- Modal -->
+<div class="modal fade" id="ModalStep" tabindex="-1" role="dialog" aria-labelledby="ModalStepTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalStepTitle"><span class='icon'><i class='fa fa-code-fork'></i></span> Novo Passo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with model: [:users_backoffice, @step], local: true do |form| %>
+        <div class="modal-body">
+          <div class='row'>
+            <div class='col-sm-12'>
+              <%= form.label :'Nome do passo' %>
+              <%= form.text_field :name, class:"form-control" %>
+            </div>
+          </div>
+          
+          <div class='row'>
+            <div class='col-sm-5'>
+              <br>
+              <%= form.label :'Objetivo' %>
+              <%= form.collection_select :objective_id, Objective.order(:name), :id, :name, {}, { class:"form-control" } %>
+            </div><br>
+            <div class='col-sm-4'>
+              <br>
+              <%= form.label :'Data Limite' %>
+              <%= form.date_field :deadline, class:"form-control" %>
+            </div><br>
+            <div class='col-sm-3'>
+              <br>
+              <%= form.label :'Finalizado ?' %>
+              <%= form.check_box :done, class:"form-control" %>
+            </div>
+          </div>
+          <br>
+          <div class='row'>
+            <div class='col-12'>
+              <%= form.label :'Descrição' %>
+              <%= form.text_area :description, class:"form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar</button>
+          <%= form.submit "Salvar", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

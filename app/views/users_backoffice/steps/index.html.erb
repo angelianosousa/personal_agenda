@@ -17,9 +17,9 @@
 
       <div class='nav-item'>
         <% unless step.done %>
-          <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check-square-o", style:"color:green;font-size:20px;" %>
+          <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check-square-o", style:"font-size:20px;" %>
         <% else %>
-          <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check-square", style:"color:green;font-size:20px;" %>
+          <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check-square", style:"font-size:20px;" %>
         <% end %>
         <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
         <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>

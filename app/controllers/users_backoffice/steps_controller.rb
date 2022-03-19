@@ -26,7 +26,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
     respond_to do |format|
       if @step.save
-        format.html { redirect_to users_backoffice_step_url(@step), notice: "Step was successfully created." }
+        format.html { redirect_to users_backoffice_steps_path, notice: "Step was successfully created." }
         format.json { render :show, status: :created, location: @step }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,11 +37,15 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
   def check_step
     @step.update done: true
+    @step.objective.steps_finish += 1
+    @step.objective.save
     redirect_to users_backoffice_steps_url, notice: "Passo marcado com sucesso!"
   end
 
   def uncheck_step
     @step.update done: false
+    @step.objective.steps_finish -= 1
+    @step.objective.save
     redirect_to users_backoffice_steps_url, notice: "Passo desmarcado com sucesso!"
   end
 
@@ -49,7 +53,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
   def update
     respond_to do |format|
       if @step.update(step_params)
-        format.html { redirect_to users_backoffice_step_url(@step), notice: "Step was successfully updated." }
+        format.html { redirect_to users_backoffice_steps_path, notice: "Step was successfully updated." }
         format.json { render :show, status: :ok, location: @step }
       else
         format.html { render :edit, status: :unprocessable_entity }

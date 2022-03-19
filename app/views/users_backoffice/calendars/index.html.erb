@@ -3,8 +3,13 @@
     <a class="navbar-brand" href="/users_backoffice/calendars/index"> <span class='icon'><i class='fa fa-calendar'></i></span> Meu Calendário</a>
 
     <div class='nav-item'>
-      <%= link_to ' Objetivo', new_users_backoffice_objective_path, class:"btn btn-outline-info fa fa-plus text-white" %>
-      <%= link_to ' Passo', new_users_backoffice_step_path, class:"btn btn-outline-info fa fa-plus text-white" %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalObjective">
+        <i class='fa fa-plus text-white'>Objetivo</i>
+      </button>
+      <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalStep">
+        <i class='fa fa-plus text-white'>Passo</i> 
+      </button>
     </div>
   </nav>
 </div><br>
@@ -26,11 +31,13 @@
       <div class="tab-pane fade show active" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab">
         <%= calendar(number_of_days: 1, events: @my_steps, attribute: :deadline) do |date, steps| %>
           <%= date.strftime("%d %B") %>
-
+          <br><br>
           <% steps.each do |step| %>
-            <div class='events'>
-              <%= step.name %>
-            </div>
+            <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#ModalShowStep">
+              <%= step.name %> - <%= step.description %>
+            </button>
+
+            <%= render partial: 'users_backoffice/calendars/show_step', locals: { objective: step.objective } %>
           <% end %>
         <% end %>
       </div>
@@ -39,9 +46,7 @@
           <%= date.strftime("%d") %>
 
           <% steps.each do |step| %>
-            <div class='events'>
-              <%= step.name %>
-            </div>
+            <%= step.name %>
           <% end %>
         <% end %>
       </div>
@@ -50,12 +55,13 @@
           <%= date.strftime("%d") %>
 
           <% steps.each do |step| %>
-            <div class='events'>
-              <%= step.name %>
-            </div>
+            <%= step.name %>
           <% end %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<%= render 'users_backoffice/calendars/new_objective', locals: { objective: @objective = Objective.new } %>
+<%= render 'users_backoffice/calendars/new_step', locals: { step: @step = Step.new } %>

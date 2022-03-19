@@ -3,7 +3,7 @@ class UsersBackoffice::ObjectivesController < UsersBackofficeController
 
   # GET /objectives or /objectives.json
   def index
-    @objectives = Objective.all.includes(:steps).page(params[:page])
+    @objectives = Objective.order(id: :desc).includes(:steps).page(params[:page])
   end
 
   # GET /objectives/new
@@ -18,10 +18,11 @@ class UsersBackoffice::ObjectivesController < UsersBackofficeController
   # POST /objectives or /objectives.json
   def create
     @objective = Objective.new(objective_params)
+    @objective.user_id = current_user.id
 
     respond_to do |format|
       if @objective.save
-        format.html { redirect_to objective_url(@objective), notice: "Objective was successfully created." }
+        format.html { redirect_to users_backoffice_objectives_path, notice: "Objective was successfully created." }
         format.json { render :show, status: :created, location: @objective }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +35,7 @@ class UsersBackoffice::ObjectivesController < UsersBackofficeController
   def update
     respond_to do |format|
       if @objective.update(objective_params)
-        format.html { redirect_to objective_url(@objective), notice: "Objective was successfully updated." }
+        format.html { redirect_to users_backoffice_objectives_path, notice: "Objective was successfully updated." }
         format.json { render :show, status: :ok, location: @objective }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,7 +49,7 @@ class UsersBackoffice::ObjectivesController < UsersBackofficeController
     @objective.destroy
 
     respond_to do |format|
-      format.html { redirect_to objectives_url, notice: "Objective was successfully destroyed." }
+      format.html { redirect_to users_backoffice_objectives_url, notice: "Objective was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'calendars/index'
     post 'steps/:id/check', to: "steps#check_step", as: "check_step"
     post 'steps/:id/uncheck', to: "steps#uncheck_step", as: "uncheck_step"
+    get 'welcome/index'
   end
 
   root to: "users_backoffice/welcome#index"
