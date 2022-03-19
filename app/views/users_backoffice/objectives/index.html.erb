@@ -1,6 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-light" style="background-color:#191970">
-    <a class="navbar-brand" href="#">Meus Objetivos</a>
+    <a class="navbar-brand" href="/users_backoffice/objectives"> <span class='icon'><i class='fa fa-bullseye'></i></span> Meus Objetivos</a>
 
     <%= link_to '', new_users_backoffice_objective_path, class:"fa fa-plus text-white", style:"font-size:30px;" %>
   </nav>
@@ -11,14 +11,14 @@
     <div class='card accordion' id="accordionObjectiveAndSteps">
       <div class='card-header' id="heading<%= objective.id %>">
         <nav class="navbar navbar-light bg-light">
-          <h5 style='font-size:15px;' class='text-capitalize'><strong>Objetivo: </strong> <%= objective.name %><br><strong>Data Limite: </strong> <%= objective.deadline.strftime("%d %b") %>  <strong>Passos: </strong> <%= objective.steps.size %></h5>
+          <h5 style='font-size:15px;' class='text-capitalize'><span class='icon'><i class='fa fa-bullseye'></i></span> <%= objective.name %><br> <span class='icon'><i class='fa fa-calendar'></i></span>  <%= objective.deadline.strftime("%d %b") %> | <span class='icon'><i class='fa fa-check-square'></i></span> <%= objective.steps.with_check(current_user) %>/<%= objective.steps.with_uncheck(current_user) %> </h5>
 
           <div class='nav-item'>
             <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseStep<%= objective.id %>" aria-expanded="true" aria-controls="collapseStep<%= objective.id %>">
               <i class='fa fa-list'></i>
             </button>
-            <%= link_to '', edit_users_backoffice_objective_path(objective), class:"btn btn-light fa fa-edit" %>
-            <%= link_to '', users_backoffice_objective_path(objective), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash" %>
+            <%= link_to '', edit_users_backoffice_objective_path(objective), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
+            <%= link_to '', users_backoffice_objective_path(objective), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>
           </div>
         </nav>
       </div>
@@ -27,11 +27,11 @@
         <div class="card-body">
           <% objective.steps.each do |step| %>
             <nav class="navbar navbar-light bg-light">
-              <p class='text-capitalize'><strong>Nome: </strong><%= step.name.truncate(50) %><br> <strong>Tempo Limite: </strong><%= step.deadline.strftime("%d %b") %></p>
+              <p class='text-capitalize'><strong>Nome: </strong><%= step.name.truncate(50) %><br> <span class='icon'><i class='fa fa-calendar'></i></span> <%= step.deadline.strftime("%d %b") %></p>
 
               <div class='nav-item'>
-                <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit" %>
-                <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash" %>
+                <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
+                <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>
               </div>
             </nav>
           <% end %>
