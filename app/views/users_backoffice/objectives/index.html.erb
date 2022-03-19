@@ -1,6 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-light" style="background-color:#191970">
-    <a class="navbar-brand" href="#">Meus Objetivos</a>
+    <a class="navbar-brand" href="/users_backoffice/objectives"> <span class='icon'><i class='fa fa-bullseye'></i></span> Meus Objetivos</a>
 
     <%= link_to '', new_users_backoffice_objective_path, class:"fa fa-plus text-white", style:"font-size:30px;" %>
   </nav>
@@ -11,7 +11,7 @@
     <div class='card accordion' id="accordionObjectiveAndSteps">
       <div class='card-header' id="heading<%= objective.id %>">
         <nav class="navbar navbar-light bg-light">
-          <h5 style='font-size:15px;' class='text-capitalize'><strong>Objetivo: </strong> <%= objective.name %><br> <span class='icon'><i class='fa fa-calendar'></i></span>  <%= objective.deadline.strftime("%d %b") %> | <span class='icon'><i class='fa fa-check-square'></i></span> <%= objective.steps.with_check(current_user) %>/<%= objective.steps.with_uncheck(current_user) %> </h5>
+          <h5 style='font-size:15px;' class='text-capitalize'><span class='icon'><i class='fa fa-bullseye'></i></span> <%= objective.name %><br> <span class='icon'><i class='fa fa-calendar'></i></span>  <%= objective.deadline.strftime("%d %b") %> | <span class='icon'><i class='fa fa-check-square'></i></span> <%= objective.steps.with_check(current_user) %>/<%= objective.steps.with_uncheck(current_user) %> </h5>
 
           <div class='nav-item'>
             <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseStep<%= objective.id %>" aria-expanded="true" aria-controls="collapseStep<%= objective.id %>">

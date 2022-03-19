@@ -34,6 +34,7 @@ gem 'groupdate'
 gem "simple_calendar", "~> 2.4"
 gem 'kaminari'
 gem 'kaminari-i18n'
+gem 'vanilla_nested'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -6,6 +6,11 @@ class UsersBackoffice::StepsController < UsersBackofficeController
     @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
   end
 
+  # GET /steps/new
+  def new
+    @step = Step.new
+  end
+
   # GET /steps/1 or /steps/1.json
   def show
   end

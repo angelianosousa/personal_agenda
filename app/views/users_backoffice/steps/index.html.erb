@@ -1,6 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-light" style="background-color:#191970">
-    <a class="navbar-brand" href="#">Meus Passos</a>
+    <a class="navbar-brand" href="/users_backoffice/steps"> <span class='icon'><i class='fa fa-code-fork'></i></span> Meus Passos</a>
 
     <div class='nav-item'>
       <%= link_to '', new_users_backoffice_step_path, class:"fa fa-plus text-white", style:"font-size:30px;" %>
@@ -13,7 +13,7 @@
 
   <div class='card'>
     <nav class="navbar navbar-light bg-light">
-      <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <strong>Objetivo: </strong> <%= step.objective.name %></h5>
+      <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <span class='icon'><i class='fa fa-bullseye'></i></span> <%= step.objective.name %></h5>
 
       <div class='nav-item'>
         <% unless step.done %>
