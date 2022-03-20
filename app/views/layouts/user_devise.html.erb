@@ -17,20 +17,26 @@
   </head>
 
   <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signin"></a>
+    <!-- As a heading -->
+    <nav class="navbar navbar-light", style='background-color:#191970;'>
+      <div class='nav-item'>
+        <span class="navbar-brand mb-0 h1">
+          <span class="icon">
+            <i class='fa fa-book'></i> Agenda Pessoal
+          </span>
+        </span>
+      </div>
 
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <h1>
-              <span class="icon"><i class='fa fa-book'></i> Agenda Pessoal </span>
-            </h1>
-
-            <%= yield %>
-          </section>
-        </div>
-
+      <div class='nav-item'>
+        <%= link_to "Criar conta", new_user_registration_path, class:"btn btn-outline-info" %>
+        <%= link_to "Entrar", new_user_session_path, class:"btn btn-outline-light" %>
+      </div>
+    </nav>
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <%= yield %>
+        </section>
       </div>
     </div>
 

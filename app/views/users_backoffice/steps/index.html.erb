@@ -9,7 +9,7 @@
 </div><br>
 
 <% @steps.each do |step| %>
-  <p><span class='icon'><i class='fa fa-calendar'></i></span>  <%= step.deadline.strftime("%d %b") %></p>
+  <p><span class='icon'><i class='fa fa-calendar'></i></span>  <%= step.deadline.strftime("%d %b") if step.deadline.present? %></p>
 
   <div class='card'>
     <nav class="navbar navbar-light bg-light">
