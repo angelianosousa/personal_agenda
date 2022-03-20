@@ -62,6 +62,6 @@ class UsersBackoffice::ObjectivesController < UsersBackofficeController
 
     # Only allow a list of trusted parameters through.
     def objective_params
-      params.require(:objective).permit(:user_id, :name, :deadline)
+      params.require(:objective).permit(:user_id, :name, :deadline, steps_attributes: [:id, :name, :description, :deadline, :done, :_destroy])
     end
 end
