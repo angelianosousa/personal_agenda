@@ -32,11 +32,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <% if current_user.photo_profile.attached? %>
-                  <%= image_tag current_user.photo_profile, class:"img-circle profile_img", size:"50x50" %>
-                <% else %>
-                  <%= image_tag "https://via.placeholder.com/150C/", class:"img-circle profile_img", size:"50x50", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
-                <% end %>
+                <%= image_tag "https://via.placeholder.com/150C/", class:"img-circle profile_img", size:"50x50", "aria-haspopup":"true", id:"navbarDropdown", "data-toggle":"dropdown", "aria-expanded":"false" %> 
               </div>
               <div class="profile_info">
                 <span>Seja bem vindo!!,</span>
@@ -69,7 +65,7 @@
                     <% end %>
                   </li>
                   <li>
-                    <%= link_to users_backoffice_calendars_index_path do %>
+                    <%= link_to users_backoffice_calendars_path do %>
                       <i class="fa fa-calendar"></i> Calendário
                     <% end %>
                   </li>
