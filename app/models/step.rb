@@ -16,7 +16,7 @@ class Step < ApplicationRecord
   scope :index_scope, ->(current_user) {#, count_objects) {
     # results = {}
     @steps_object_per_deadlines = {}
-    all_steps = Step.where(user: current_user).includes(:objective)
+    all_steps = Step.where(user: current_user).includes(:objective).order(deadline: :asc)
     steps_for_current_user = all_steps.pluck(:deadline)
 
     # Adding every step object on your respectivelly week
