@@ -8,25 +8,27 @@
   </nav>
 </div><br>
 
-<% @steps.each do |step| %>
-  <p><span class='icon'><i class='fa fa-calendar'></i></span>  <%= step.deadline.strftime("%d %b") if step.deadline.present? %></p>
+<% @steps.each do |key, value| %>
+  <p><span class='icon'><i class='fa fa-calendar'></i></span>  <%= key %></p>
 
-  <div class='card'>
-    <nav class="navbar navbar-light bg-light">
-      <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <span class='icon'><i class='fa fa-bullseye'></i></span> <%= step.objective.name %></h5>
+  <% value.each do |step| %>
+    <div class='card'>
+      <nav class="navbar navbar-light bg-light">
+        <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <span class='icon'><i class='fa fa-bullseye'></i></span> <%= step.objective.name %></h5>
 
-      <div class='nav-item'>
-        <% unless step.done %>
-          <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check-square-o", style:"font-size:20px;" %>
-        <% else %>
-          <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check-square", style:"font-size:20px;" %>
-        <% end %>
-        <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
-        <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>
-      </div>
-    </nav>
+        <div class='nav-item'>
+          <% unless step.done %>
+            <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check-square-o", style:"font-size:20px;" %>
+          <% else %>
+            <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check-square", style:"font-size:20px;" %>
+          <% end %>
+          <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
+          <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>
+        </div>
+      </nav>
 
-  </div><br>
+    </div><br>
+  <% end %>
 <% end %>
 
-<%= paginate @steps %><br>
+<%# <%= paginate @steps %><br>

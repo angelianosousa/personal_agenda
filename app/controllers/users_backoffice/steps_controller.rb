@@ -1,9 +1,13 @@
 class UsersBackoffice::StepsController < UsersBackofficeController
   before_action :set_step, only: %i[ show edit update destroy check_step uncheck_step ]
 
+  # TODO Make sure the pagination is works for index action
   # GET /steps or /steps.json
   def index
-    @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
+    # @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
+
+    # count_objects_per_page = 10
+    @steps = Step.index_scope(current_user)#, count_objects_per_page)
   end
 
   # GET /steps/new
