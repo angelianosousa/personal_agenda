@@ -1,49 +1,39 @@
 namespace :dev do
   desc "TODO"
   task setup: :environment do
-    show_spinner("Destruindo Banco de Dados...") { %x(rails db:drop) }
-    show_spinner("Criando novo Banco de Dados...") { %x(rails db:create) }
-    show_spinner("Construindo Tabelas...") { %x(rails db:migrate) }
-    show_spinner("Adicionando usuários teste...") { %x(rails dev:add_users) }
-    show_spinner("Adicionando quadros padrões e atividades adjacentes...") { %x(rails dev:add_boards_and_tasks) }
+    spinner_show("Apagando banco de dados...") { %x( rails db:drop )}
+    spinner_show("Criando novo banco de dados...") { %x( rails db:create )}
+    spinner_show("Construindo tabelas do banco...") { %x( rails db:migrate )}
+    spinner_show("Construindo tabelas do banco...") { %x( rails dev:add_default_user )}
+    spinner_show("Adicionando objetivos...") { %x( rails dev:add_objectives )}
+    spinner_show("Adicionando passos...") { %x( rails dev:add_steps )}
   end
 
-  desc "Adicionar usuários"
-  task add_users: :environment do
-    User.create(email:"user@user.com", password: "user123", password_confirmation:"user123")
-    5.times do |i|
-      User.create(email:"user#{i}@user.com", password: "user123", password_confirmation:"user123")
+  task add_default_user: :environment do
+    User.create(email:"user@user.com", password:"user123", password_confirmation:"user123")
+  end
+
+  desc "Adicionar objetivos testes"
+  task add_objectives: :environment do
+    5.times do
+      Objective.create(user_id: 1, name: Faker::Esport.event, deadline: Faker::Date.in_date_period)
     end
   end
 
-  task add_boards_and_tasks: :environment do
-    50.times do |i|
-      Board.create(
-        user_id: User.all.sample.id,
-        title: Faker::Books::CultureSeries.book,
-        description: Faker::Lorem.paragraph
-      )
-    end
-
-    Board.all.each do |board|
-      rand(3..8).times do |t|
-        Task.create(
-          user_id: User.all.sample.id,
-          board_id: board.id, 
-          title: Faker::Educator.university, 
-          description: Faker::Lorem.paragraph , 
-          start_time: Faker::Date.backward(days: 14), 
-          finish: ["true", "false"].sample
-        )
+  task add_steps: :environment do
+    Objective.all.each do |objective|
+      rand(2..5).times do
+        Step.create(user_id: 1, objective: objective, name: Faker::Esport.event, deadline: Faker::Date.in_date_period)
       end
     end
   end
 
-  def show_spinner(msg_start, msg_end = "Concluído!!")
-    spinner = TTY::Spinner.new("[:spinner] #{msg_start}")
-    spinner.auto_spin
-    yield
-    spinner.success("#{msg_end}")
+  private
+
+  def spinner_show(msg_start, msg_end = "Concluído")
+    spinner = TTY::Spinner.new("[:spinner] #{msg_start}")   
+    spinner.auto_spin 
+    spinner.success(msg_end)
   end
 
 end

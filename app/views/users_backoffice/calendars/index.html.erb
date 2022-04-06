@@ -1,0 +1,55 @@
+<div class="container">
+  <nav class="navbar navbar-light" style="background-color:#191970">
+    <a class="navbar-brand" href="/users_backoffice/calendars/index"> <span class='icon'><i class='fa fa-calendar'></i></span> Meu Calendário</a>
+
+    <div class='nav-item'>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalObjective">
+        <i class='fa fa-plus text-white'>Objetivo</i>
+      </button>
+      <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalStep">
+        <i class='fa fa-plus text-white'>Passo</i> 
+      </button>
+    </div>
+  </nav>
+</div><br>
+
+<div class='card'>
+  <div class='card-body' style='height:600px'>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-month-tab" data-toggle="pill" href="#pills-month" role="tab" aria-controls="pills-month" aria-selected="false">Mês</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-week-tab" data-toggle="pill" href="#pills-week" role="tab" aria-controls="pills-week" aria-selected="false">Semana</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-month" role="tabpanel" aria-labelledby="pills-month-tab">
+        <%= month_calendar(events: @my_steps, attribute: :deadline) do |date, steps| %>
+          <%= date.strftime("%d") %>
+
+          <% steps.each do |step| %>
+            <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#ModalShowStep">
+              <%= step.name %>
+            </button>
+
+            <%= render partial: 'users_backoffice/calendars/show_step', locals: { objective: step.objective } %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="tab-pane fade" id="pills-week" role="tabpanel" aria-labelledby="pills-week-tab">
+        <%= week_calendar(number_of_weeks: 1, events: @my_steps, attribute: :deadline) do |date, steps| %>
+          <%= date.strftime("%d") %>
+
+          <% steps.each do |step| %>
+            <%= step.name %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'users_backoffice/calendars/new_objective', locals: { objective: @objective = Objective.new } %>
+<%= render 'users_backoffice/calendars/new_step', locals: { step: @step = Step.new } %>

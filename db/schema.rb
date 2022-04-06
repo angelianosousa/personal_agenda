@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_220207) do
+ActiveRecord::Schema.define(version: 2022_03_19_143937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,27 +36,28 @@ ActiveRecord::Schema.define(version: 2022_01_28_220207) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "boards", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "tasks_count", default: 0
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_boards_on_user_id"
+  create_table "objectives", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.date "deadline"
+    t.integer "steps_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "steps_finish", default: 0
+    t.index ["user_id"], name: "index_objectives_on_user_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.bigint "board_id"
-    t.string "title"
-    t.text "description"
-    t.datetime "start_time"
-    t.boolean "finish", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["board_id"], name: "index_tasks_on_board_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+  create_table "steps", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.date "deadline"
+    t.text "description", default: ""
+    t.boolean "done", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "objective_id", null: false
+    t.index ["objective_id"], name: "index_steps_on_objective_id"
+    t.index ["user_id"], name: "index_steps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_220207) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "boards", "users"
-  add_foreign_key "tasks", "boards"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "objectives", "users"
+  add_foreign_key "steps", "objectives"
+  add_foreign_key "steps", "users"
 end

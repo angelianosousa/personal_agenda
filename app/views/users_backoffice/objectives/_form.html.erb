@@ -1,0 +1,38 @@
+<%= form_with(model: [:users_backoffice, objective], local: true) do |form| %>
+  <% if objective.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(objective.errors.count, "error") %> prohibited this objective from being saved:</h2>
+
+      <ul>
+        <% objective.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='row'>
+    <div class='col-sm-12'>
+      <%= form.label :'Nome do Objetivo' %>
+      <%= form.text_field :name, class:"form-control" %><br>
+    </div>
+    <div class='col-sm-12'>
+      <%= form.label :'Data Limite' %>
+      <%= form.date_field :deadline, class:"form-control" %>
+    </div>
+  </div>
+  <br>
+  <%= link_to_add_nested(form, :steps, '#steps', link_classes: 'btn btn-outline-success text-dark fa fa-plus', link_text:"Adicionar passo") %>
+  <br><br>
+  <div id='steps'>
+    <%= form.fields_for :steps do |step_form| %>
+      <%= render 'step_fields', form: step_form %>
+    <% end %>
+  </div>
+  
+  <div class="btn-group" style='margin-top:15px;'>
+    <%= form.submit "Salvar" , class:"btn btn-primary" %> &nbsp;
+    <%= link_to 'Cancel', users_backoffice_objectives_path, class:"btn btn-danger" %>
+  </div>
+
+<% end %>

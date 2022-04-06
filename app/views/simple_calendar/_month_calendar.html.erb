@@ -1,36 +1,15 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <div class="label label-default">
-
-      <div class="title_left">
-        <h5>
-          Minha Agenda de Eventos: <strong><span class="calendar-title label"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>&nbsp;</strong>
-        </h5>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6" style="font-size:20px;">
-          <%= link_to t('simple_calendar.previous', default: 'next'), calendar.url_for_previous_view, class:"badge badge-primary btn-round" %>&nbsp;
-          <%= link_to t('simple_calendar.next', default: 'previous'), calendar.url_for_next_view, class:"badge badge-primary btn-round" %>
-        </div>
-
-        <div class="col">
-          <%= link_to new_users_backoffice_board_path, class:"btn btn-primary btn-round", style:"float:right;font-size:12px;", title:"Adicionar atividade" do %>
-            <i class="fa fa-plus-square"></i>
-          <% end %>
-          <%= link_to "#", class:"btn btn-success btn-round", "data-toggle":"modal", "data-target":"#taskCalendarModal", style:"float:right;font-size:12px;", title:"Adicionar quadro" do %>
-            <i class="fa fa-plus-square"></i>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div><br>
+    <%= link_to t('simple_calendar.previous', default: 'Anterior'), calendar.url_for_previous_view, class:"btn btn-outline-primary btn-sm" %>
+    <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+    <%= link_to t('simple_calendar.next', default: 'Próximo'), calendar.url_for_next_view, class:"btn btn-outline-primary btn-sm" %>
+  </div>
 
   <table class="table table-striped">
-    <thead class="thead-dark">
+    <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.day_names')[day.wday] %></th>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
       </tr>
     </thead>
@@ -52,5 +31,3 @@
     </tbody>
   </table>
 </div>
-
-<%= render partial: 'users_backoffice/calendar_events/shared/task_calendar_modal', locals: { task: @task = Task.new } %> 

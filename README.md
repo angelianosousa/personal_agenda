@@ -1,24 +1,31 @@
-# README
+# Personal Agenda
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Description
+The objective of this project is to be a personal agenda where the user adds his goals with clear deadlines to meet and can follow his entire agenda from the palm of his hand or from his computer.
 
-Things you may want to cover:
+You add a goal and break it down into smaller goals, describe it if you want, and keep track of everything on a calendar and get notifications if you have any tasks close to completion.
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+### Dependencies
 
-* Configuration
+* ruby 2.7.5
+* rails 6.0.1
+* Postgre SQL
+* Bootstrap 4.3.1
+* Jquery 2.2.4
 
-* Database creation
+### Build Project
 
-* Database initialization
+~~~ruby
+  - bundle install
+  - rails db:create db:migrate dev:add_default_user dev:add_objectives dev:add_steps
+~~~
 
-* How to run the test suite
+## Importants Links
 
-* Services (job queues, cache servers, search engines, etc.)
+Projeto em produção: <https://personalagenda.herokuapp.com/users/sign_in>
 
-* Deployment instructions
+## Author
 
-* ...
+Angeliano Sousa [LinkedIn](https://www.linkedin.com/in/angeliano-sousa/)

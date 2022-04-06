@@ -10,10 +10,10 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="form-group">
-      <%= f.check_box :remember_me %>
+    <div class="field">
+      <%= f.check_box :remember_me, class:"form-control-md" %>
       <%= f.label :Lembrar_de_mim %>
-    </div>
+    </div><br>
   <% end %>
 
   <div class="actions">
@@ -21,4 +21,4 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<%= link_to "Esqueceu sua senha ?", new_user_password_path %>

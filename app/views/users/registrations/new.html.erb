@@ -1,26 +1,31 @@
+<<<<<<< HEAD
+<h2>Criando conta</h2>
+=======
 <h2>Cadastro de Novo Usuário</h2>
+>>>>>>> origin/principal
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="form-group">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Digite seu email", class:"form-control" %>
+    <%= f.label :Email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
   </div>
 
   <div class="form-group">
+    <%= f.label :Senha %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> letras no minimo)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder:"Digite uma senha", class:"form-control" %>
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirme sua senha", class:"form-control" %>
+    <%= f.label :Senha_de_confirmação %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Salvar", class:"btn btn-primary btn-block", style:"margin-left:0;" %>
+    <%= f.submit "Salvar", class:"btn btn-primary btn-block btn-round", style:"float:none;margin-left:0;" %>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>

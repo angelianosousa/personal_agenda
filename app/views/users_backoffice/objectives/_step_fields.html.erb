@@ -1,0 +1,36 @@
+<div class='wrapper-div'>
+  <div class='card'>
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <div class='field'>
+            <%= form.label :'Nome do passo' %>
+            <%= form.text_field :name, class:"form-control" %>
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class='field'>
+            <%= form.label :'Objetivo' %>
+            <%= form.collection_select :objective_id, Objective.order(:name), :id, :name, {}, { class:"form-control" } %>
+          </div>
+        </div>
+      </div><br>
+      <div class='field'>
+        <%= form.label :'Data Limite' %>
+        <%= form.date_field :deadline, class:"form-control" %>
+      </div><br>
+      <div class='field'>
+        <%= form.label :'Descrição' %>
+        <%= form.text_area :description, class:"form-control" %>
+      </div>
+      <br>
+      <div class='field'>
+        <%= form.label :'Finalizado ?' %>
+        <%= form.check_box :done, class:"form-control-md" %>
+      </div>
+      <%= link_to_remove_nested(form, link_classes:"pull-right text-dark", link_text:"Remover") do %> <!-- adds a link to add more items -->
+        <i class='fa fa-trash' style='font-size:25px;'></i>
+      <% end %>
+    </div>
+  </div>
+</div><br>
