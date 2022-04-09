@@ -1,0 +1,25 @@
+<div class='container'>
+  <div class='card'>
+    <div class='card-body'>
+      <h3 class='header-welcome-page'>
+        <i class="fa fa-book"></i> &nbsp;Personal Agenda
+      </h3><br>
+      <p class="text-justify text-center">A sua agenda pessoal com gerenciamento de objetivos e passos. <br>Do jeito que você precisa para acompanhar suas entregas diárias.</p><br>
+      <div class='button-position'>
+        <% unless user_signed_in? %>
+          <%= link_to 'Crie uma conta', new_user_registration_path, class:'btn btn-outline-primary' %>&nbsp;&nbsp;
+          <%= link_to 'Faça login', new_user_session_path, class:'btn btn-info' %>
+        <% else %>
+          <%= link_to "Acessar painel", users_backoffice_welcome_path, class:'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<footer>
+  <div class='container-fluid'>
+    <p class='text-center'>Desenvolvido por Angeliano Sousa - 2022</p>
+  </div>
+</footer>

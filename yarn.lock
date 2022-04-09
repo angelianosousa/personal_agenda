@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-animate.css@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.npmjs.org/animate.css/-/animate.css-3.5.0.tgz#21b8549f13fec035cd38fd1037c58cd49ad45ae5"
-  integrity sha1-IbhUnxP+wDXNOP0QN8WM1JrUWuU=
-
 bootstrap-growl-ifightcrime@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/bootstrap-growl-ifightcrime/-/bootstrap-growl-ifightcrime-1.1.0.tgz#3f83c12bd29281315580a05ec13841d60031539e"
