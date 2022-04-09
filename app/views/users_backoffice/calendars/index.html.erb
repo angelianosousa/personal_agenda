@@ -27,14 +27,14 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-month" role="tabpanel" aria-labelledby="pills-month-tab">
         <%= month_calendar(events: @my_steps, attribute: :deadline) do |date, steps| %>
-          <%= date.strftime("%d") %>
+          <%= date.strftime("%d") %><br>
 
           <% steps.each do |step| %>
             <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#ModalShowStep">
               <%= step.name %>
             </button>
 
-            <%= render partial: 'users_backoffice/calendars/show_step', locals: { objective: step.objective } %>
+            <%= render partial: 'users_backoffice/calendars/show_step', locals: { step: step } %>
           <% end %>
         <% end %>
       </div>

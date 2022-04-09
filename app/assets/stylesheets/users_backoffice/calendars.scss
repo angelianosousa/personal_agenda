@@ -5,3 +5,9 @@
 .simple-calendar-week {
   .day { height: 400px; }
 }
+
+.calendar-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
