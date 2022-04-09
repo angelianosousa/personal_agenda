@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: personal_agenda_production
-  username: personal_agenda
-  password: <%= ENV['PERSONAL_AGENDA_DATABASE_PASSWORD'] %>

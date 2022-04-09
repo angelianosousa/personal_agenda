@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.events {
-  border: 1px solid blue;
-  border-radius: 10%;
-}
-
-#calendar_steps{
-  height:100%;
+.simple-calendar-week {
+  .day { height: 400px; }
 }

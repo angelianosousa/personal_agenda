@@ -6,9 +6,4 @@ class ApplicationController < ActionController::Base
     devise_controller? ? "#{resource_class.to_s.downcase}_devise" : "application"
   end
 
-  # private
-
-  #   def set_time_zone
-  #     Time.zone = current_user.time_zone
-  #   end
 end

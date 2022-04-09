@@ -24,7 +24,7 @@ You add a goal and break it down into smaller goals, describe it if you want, an
 
 ## Importants Links
 
-[Projeto em produção][https://personalagenda.herokuapp.com/users/sign_in]
+Projeto em produção: <https://personalagenda.herokuapp.com/users/sign_in>
 
 ## Author
 

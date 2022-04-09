@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="ModalObjective" tabindex="-1" role="dialog" aria-labelledby="ModalObjectiveTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalObjectiveTitle"><span class='icon'><i class='fa fa-bullseye'></i></span> Novo Objetivo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with model: [:users_backoffice, @objective], local: true do |form| %>
+        <div class="modal-body">
+          <div class='row'>
+            <div class='col-sm-12'>
+              <%= form.label :'Nome do Objetivo' %>
+              <%= form.text_field :name, class:"form-control" %><br>
+            </div>
+            <div class='col-sm-12'>
+              <%= form.label :'Data Limite' %>
+              <%= form.date_field :deadline, class:"form-control" %>
+            </div>
+          </div>
+
+          <br>
+          <%= link_to_add_nested(form, :steps, '#steps', link_classes: 'btn btn-outline-success text-dark fa fa-plus', link_text:"Adicionar passo") %>
+          
+          <div id='steps'>
+            <%= form.fields_for :steps do |step_form| %>
+              <%= render 'step_fields', form: step_form %>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar</button>
+          <%= form.submit "Salvar", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

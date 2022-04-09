@@ -1,9 +1,13 @@
 class UsersBackoffice::StepsController < UsersBackofficeController
   before_action :set_step, only: %i[ show edit update destroy check_step uncheck_step ]
 
+  # TODO Make sure the pagination is works for index action
   # GET /steps or /steps.json
   def index
-    @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
+    # @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
+
+    count_objects_per_page = 5
+    @steps = Step.index_scope(current_user, params[:page], count_objects_per_page)
   end
 
   # GET /steps/new
@@ -26,7 +30,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
     respond_to do |format|
       if @step.save
-        format.html { redirect_to users_backoffice_step_url(@step), notice: "Step was successfully created." }
+        format.html { redirect_to users_backoffice_steps_path, notice: "Step was successfully created." }
         format.json { render :show, status: :created, location: @step }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,11 +41,15 @@ class UsersBackoffice::StepsController < UsersBackofficeController
 
   def check_step
     @step.update done: true
+    @step.objective.steps_finish += 1
+    @step.objective.save
     redirect_to users_backoffice_steps_url, notice: "Passo marcado com sucesso!"
   end
 
   def uncheck_step
     @step.update done: false
+    @step.objective.steps_finish -= 1
+    @step.objective.save
     redirect_to users_backoffice_steps_url, notice: "Passo desmarcado com sucesso!"
   end
 
@@ -49,7 +57,7 @@ class UsersBackoffice::StepsController < UsersBackofficeController
   def update
     respond_to do |format|
       if @step.update(step_params)
-        format.html { redirect_to users_backoffice_step_url(@step), notice: "Step was successfully updated." }
+        format.html { redirect_to users_backoffice_steps_path, notice: "Step was successfully updated." }
         format.json { render :show, status: :ok, location: @step }
       else
         format.html { render :edit, status: :unprocessable_entity }

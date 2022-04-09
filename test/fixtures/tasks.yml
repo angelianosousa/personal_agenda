@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: one
+  title: MyString
+  description: MyText
+  date_limit: MyString
+
+two:
+  subject: two
+  title: MyString
+  description: MyText
+  date_limit: MyString

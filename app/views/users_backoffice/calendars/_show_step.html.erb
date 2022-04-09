@@ -1,0 +1,37 @@
+<!-- Modal -->
+<div class="modal fade" id="ModalShowStep" tabindex="-1" role="dialog" aria-labelledby="ModalShowStepTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalShowStepTitle"><span class='icon'><i class='fa fa-bullseye'></i></span> Objetivo: <%= objective.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% objective.steps.each do |step| %>
+          <p><span class='icon'><i class='fa fa-calendar'></i></span>  <%= step.deadline.strftime("%d %b") %></p>
+
+          <div class='card'>
+            <nav class="navbar navbar-light bg-light">
+              <h5 style='font-size:15px;' class='text-capitalize'><strong>Nome: </strong> <%= step.name %><br> <span class='icon'><i class='fa fa-bullseye'></i></span> <%= step.objective.name %></h5>
+
+              <div class='nav-item'>
+                <% unless step.done %>
+                  <%= link_to '', users_backoffice_check_step_path(step), method: :post, class:"btn btn-light fa fa-check-square-o", style:"font-size:20px;" %>
+                <% else %>
+                  <%= link_to '', users_backoffice_uncheck_step_path(step), method: :post, class:"btn btn-light fa fa-check-square", style:"font-size:20px;" %>
+                <% end %>
+                <%= link_to '', edit_users_backoffice_step_path(step), class:"btn btn-light fa fa-edit", style:"font-size:20px;" %>
+                <%= link_to '', users_backoffice_step_path(step), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-light fa fa-trash", style:"font-size:20px;" %>
+              </div>
+            </nav>
+          </div><br>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar</button>
+      </div>
+    </div>
+  </div>
+</div>

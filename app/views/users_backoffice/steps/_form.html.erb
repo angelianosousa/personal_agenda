@@ -11,32 +11,32 @@
     </div>
   <% end %>
   
-  <div class='row-sm-12'>
+  <div class='row'>
     <div class='col-sm-12'>
       <%= form.label :'Nome do passo' %>
       <%= form.text_field :name, class:"form-control" %>
     </div>
   </div>
   
-  <div class='row-sm-12'>
+  <div class='row'>
     <div class='col-sm-4'>
-    <br>
+      <br>
       <%= form.label :'Objetivo' %>
       <%= form.collection_select :objective_id, Objective.order(:name), :id, :name, {}, { class:"form-control" } %>
     </div><br>
     <div class='col-sm-4'>
-    <br>
+      <br>
       <%= form.label :'Data Limite' %>
       <%= form.date_field :deadline, class:"form-control" %>
     </div><br>
     <div class='col-sm-4'>
-    <br>
-      <%= form.label :'Finalizado ?' %><br>
+      <br>
+      <%= form.label :'Finalizado ?' %>
       <%= form.check_box :done, class:"form-control" %>
     </div>
   </div>
-  
-  <div class='row-sm-12'>
+  <br>
+  <div class='row'>
     <div class='col-12'>
       <%= form.label :'Descrição' %>
       <%= form.text_area :description, class:"form-control" %>
@@ -44,7 +44,7 @@
   </div>
   
   <div class="btn-group" style='margin-top:15px;'>
-    <%= form.submit "Salvar" , class:"btn btn-primary btn-round" %> &nbsp;
-    <%= link_to 'Cancel', users_backoffice_steps_path, class:"btn btn-danger btn-round" %>
+    <%= form.submit "Salvar" , class:"btn btn-primary" %> &nbsp;
+    <%= link_to 'Cancel', users_backoffice_steps_path, class:"btn btn-danger" %>
   </div>
 <% end %>

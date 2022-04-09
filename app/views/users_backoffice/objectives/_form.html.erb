@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class='row-sm-12'>
+  <div class='row'>
     <div class='col-sm-12'>
       <%= form.label :'Nome do Objetivo' %>
       <%= form.text_field :name, class:"form-control" %><br>
@@ -20,6 +20,14 @@
       <%= form.label :'Data Limite' %>
       <%= form.date_field :deadline, class:"form-control" %>
     </div>
+  </div>
+  <br>
+  <%= link_to_add_nested(form, :steps, '#steps', link_classes: 'btn btn-outline-success text-dark fa fa-plus', link_text:"Adicionar passo") %>
+  <br><br>
+  <div id='steps'>
+    <%= form.fields_for :steps do |step_form| %>
+      <%= render 'step_fields', form: step_form %>
+    <% end %>
   </div>
   
   <div class="btn-group" style='margin-top:15px;'>
