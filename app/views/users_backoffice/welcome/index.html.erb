@@ -3,3 +3,26 @@
     <a class="navbar-brand" href="#">Users Backoffice</a>
   </nav>
 </div><br>
+
+<section class='section'>
+  <div class="row dashboard-top">
+    <div class="tile_count">
+      <div class="col-md-3 col-sm-4  tile_stats_count">
+        <span class="count_top"><i class="fa fa-bullseye"></i> Total de objetivos</span>
+        <div class="count"><%= @total_objectives.to_f.round(2) %></div>
+      </div>
+      <div class="col-md-3 col-sm-4  tile_stats_count">
+        <span class="count_top"><i class="fa fa-code-fork"></i> Total de Passos</span>
+        <div class="count"><%= @total_steps.to_f.round(2) %></div>
+      </div>
+      <div class="col-md-3 col-sm-4  tile_stats_count">
+        <span class="count_top"><i class="fa fa-code-fork"></i> Nº Passos Feitos</span>
+        <div class="count green"><%= @step_done.to_f.round(2) %></div>
+      </div>
+      <div class="col-md-3 col-sm-4  tile_stats_count">
+        <span class="count_top"><i class="fa fa-code-fork"></i> Nº Passos Não Feitos</span>
+        <div class="count red"><%= @step_undone.to_f.round(2) %></div>
+      </div>
+    </div>
+  </div>
+</section>
