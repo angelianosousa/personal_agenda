@@ -6,8 +6,8 @@ class UsersBackoffice::StepsController < UsersBackofficeController
   def index
     # @steps = Step.steps_by_deadline(current_user.objectives.ids).page(params[:page])
 
-    # count_objects_per_page = 10
-    @steps = Step.index_scope(current_user)#, count_objects_per_page)
+    count_objects_per_page = 5
+    @steps = Step.index_scope(current_user, params[:page], count_objects_per_page)
   end
 
   # GET /steps/new
