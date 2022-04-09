@@ -1,4 +1,4 @@
-class UsersBackoffice::WelcomeController < UsersBackofficeController
+class UsersBackoffice::WelcomeOfficeController < UsersBackofficeController
   def index
     @step_done = Step.with_check(current_user)
     @step_undone = Step.with_uncheck(current_user)
