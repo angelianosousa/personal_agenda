@@ -13,6 +13,7 @@ Rails.application.config.assets.precompile += %w(
   users_backoffice.js users_backoffice.css
   user_devise.js user_devise.css
   img.jpg
+  welcome_page.css
 )
 
 # lib/assets
