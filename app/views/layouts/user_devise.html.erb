@@ -28,13 +28,15 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'user_devise' %>
 
-    <% if flash %>
-        <% flash.each do |key, value| %>
-          <%= javascript_tag do %>
-            var notify =$.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
-            notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
-          <% end %>
-        <% end %>
+    <% flash.each do |key, msg| %>
+      <%= javascript_tag do %>
+        $.bootstrapGrowl('<%= msg %>', {
+          type: '<%= flash_class(key) %>', // (null, 'info', 'danger', 'success')
+          align: 'right', // ('left', 'right', or 'center')
+          allow_dismiss: true, // If true then will display a cross to close the popup.
+          stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });
+      <% end %>
     <% end %>
 
   </body>
