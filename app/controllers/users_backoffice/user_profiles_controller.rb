@@ -9,11 +9,10 @@ class UsersBackoffice::UserProfilesController < UsersBackofficeController
   def update
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to user_profile_url(@user_profile), notice: "User profile was successfully updated." }
+        format.html { redirect_to root_path, notice: "Perfil atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @user_profile }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user_profile.errors, status: :unprocessable_entity }
+        render :edit, alert: @user_profile.errors, status: :unprocessable_entity
       end
     end
   end
@@ -22,10 +21,7 @@ class UsersBackoffice::UserProfilesController < UsersBackofficeController
   def destroy
     @user_profile.destroy
 
-    respond_to do |format|
-      format.html { redirect_to user_profiles_url, notice: "User profile was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: "Perfil removido com sucesso."
   end
 
   private
