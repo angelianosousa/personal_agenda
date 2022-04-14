@@ -12,22 +12,33 @@
   <% end %>
 
   <div class='row'>
-    <div class='col-sm-6'>
+    <div class='col-md-4'>
       <div class='form-group'>
         <div class="field">
-          <%= form.label :fullname %>
-          <%= form.text_field :fullname, class:"form-control" %>
+          <% @user_profile = current_user.user_profile.avatar %> <!-- Variable for set the current user for images profile --->
+          <div class='card' style='width: 20rem;'>
+            <div class='card-body card-style-edit-profile'>
+              <div class="profile_pic">
+                <%= @user_profile.attached? ? image_tag(@user_profile, size:"200x200", class:"card-img profile_img") : image_tag("https://via.placeholder.com/150C/", size:"100x60", class:"img-circle profile_img") %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class='col-sm-6'>
+
+    <div class='col-md-6'>
       <div class='form-group'>
         <div class="field">
-          <label>Avatar</label>
+          <label>Imagem de Perfil</label>
           <div class="custom-file">
             <%= form.label :'Escolher arquivo', class:"custom-file-label", for:"customFile" %>
             <%= form.file_field :avatar, class:"form-control", class:"custom-file-input", id:"customFile" %>
           </div>
+        </div>
+        <div class="field">
+          <%= form.label :'Nome Completo' %>
+          <%= form.text_field :fullname, class:"form-control" %>
         </div>
       </div>
     </div>
