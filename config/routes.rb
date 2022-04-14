@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :users_backoffice do
     resources :steps
     resources :objectives
+    resources :user_profiles, only: %i[edit update destroy]
     get 'calendars', to: "calendars#index"
     post 'steps/:id/check', to: "steps#check_step", as: "check_step"
     post 'steps/:id/uncheck', to: "steps#uncheck_step", as: "uncheck_step"
